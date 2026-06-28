@@ -250,7 +250,7 @@ export default function Analytics() {
               </ResponsiveContainer>
             </ChartCard>
 
-            <ChartCard title="🎯 Portfolio Risk Category Distribution" height="h-56">
+            <ChartCard title="🎯 Portfolio Credit Risk Rating Distribution" height="h-56">
               <div className="flex h-full items-center justify-between">
                 <div className="flex-1 h-full min-w-[150px]">
                   <ResponsiveContainer width="100%" height="100%">

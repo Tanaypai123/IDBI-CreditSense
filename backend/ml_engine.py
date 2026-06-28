@@ -81,12 +81,48 @@ def build_feature_vector(inputs_dict: Dict[str, Any]) -> pd.DataFrame:
     load_resources()
     feat_vec = {col: 0.0 for col in feature_columns}
     
-    # Map numerical values
+    # 1. Map values directly matching keys
     for col in feature_columns:
         if col in inputs_dict:
             feat_vec[col] = float(inputs_dict[col])
             
-    # One-hot encoding variables
+    # 2. Derive/approximate features that are computed aggregates in the pipeline
+    turnover = float(inputs_dict.get("Annual_Turnover", 12000000.0))
+    employees = float(inputs_dict.get("Current_Employees", 12.0))
+    salary = float(inputs_dict.get("Average_Salary", 30000.0))
+    margin = float(inputs_dict.get("Profit_Margin_Mean", 0.18))
+    ind_risk = float(inputs_dict.get("Industry_Risk", 0.40))
+    digital = float(inputs_dict.get("Digital_Adoption_Score", 0.70))
+    dpo = float(inputs_dict.get("DPO_Mean", 35.0))
+    
+    rev_mean = turnover / 12.0
+    gross_profit = rev_mean * (margin + 0.15)
+    op_expense = rev_mean - gross_profit
+    payroll = employees * salary
+    dso = 30.0 * ind_risk
+    ccc = dso + 30.0 - dpo
+    refund = ind_risk * 0.05 + 0.01 - digital * 0.02
+    
+    derived = {
+        "Revenue_Mean": rev_mean,
+        "Revenue_Min": rev_mean * 0.8,
+        "Revenue_Max": rev_mean * 1.2,
+        "Gross_Profit_Mean": gross_profit,
+        "Operating_Expense_Mean": op_expense,
+        "Payroll_Mean": payroll,
+        "Payroll_Total": payroll * 12.0,
+        "DSO_Mean": dso,
+        "Cash_Conversion_Cycle_Mean": ccc,
+        "UPI_Refund_Rate_Mean": refund,
+        "Employee_Count": employees,
+        "UPI_Success_Rate": inputs_dict.get("Success", 0.95)
+    }
+    
+    for col in feature_columns:
+        if col in derived and col not in inputs_dict:
+            feat_vec[col] = float(derived[col])
+            
+    # 3. Categorical encoding
     ind_col = f"Industry_{inputs_dict.get('Industry', '')}"
     if ind_col in feat_vec:
         feat_vec[ind_col] = 1.0
@@ -99,7 +135,10 @@ def build_feature_vector(inputs_dict: Dict[str, Any]) -> pd.DataFrame:
     if type_col in feat_vec:
         feat_vec[type_col] = 1.0
         
-    return pd.DataFrame([feat_vec])
+    # Maintain exact order
+    df_feat = pd.DataFrame([feat_vec])
+    df_feat = df_feat[feature_columns]
+    return df_feat
 
 def predict_single(inputs_dict: Dict[str, Any]) -> Tuple[float, str, float, bool, float, List[Dict[str, Any]], List[Dict[str, Any]]]:
     load_resources()
@@ -109,28 +148,62 @@ def predict_single(inputs_dict: Dict[str, Any]) -> Tuple[float, str, float, bool
     score = float(model_health.predict(row_df)[0])
     score = np.clip(score, 0.0, 100.0)
     
-    # 2. Risk classification
-    if score >= 85:
+    # 2. Default Probability
+    default_prob = float(model_default.predict(row_df)[0])
+    default_prob = np.clip(default_prob, 0.0, 1.0)
+    
+    # 3. Multi-factor Risk Classification
+    turnover = float(inputs_dict.get("Annual_Turnover", 12000000.0))
+    outstanding = float(inputs_dict.get("Outstanding_Principal_Total", 0.0))
+    leverage = outstanding / max(turnover, 1.0)
+    
+    health_deficit = 1.0 - (score / 100.0)
+    gst_deficit = 1.0 - (float(inputs_dict.get("GST_Compliance_Mean", 94.0)) / 100.0)
+    
+    current_ratio = float(inputs_dict.get("Current_Ratio_Mean", 1.8))
+    liquidity_deficit = np.clip(1.0 - (current_ratio / 1.5), 0.0, 1.0)
+    
+    risk_score = (
+        health_deficit * 0.25 +
+        default_prob * 0.25 +
+        float(inputs_dict.get("Default_History", 0.0)) * 0.20 +
+        np.clip(float(inputs_dict.get("EMI_Delay_Count", 0.0)) * 0.05, 0.0, 0.15) +
+        np.clip(leverage * 0.15, 0.0, 0.15) +
+        liquidity_deficit * 0.05 +
+        gst_deficit * 0.05
+    )
+    risk_score = np.clip(risk_score, 0.0, 1.0)
+    
+    if risk_score <= 0.25:
         risk_category = "Excellent"
-    elif score >= 70:
+    elif risk_score <= 0.45:
         risk_category = "Low Risk"
-    elif score >= 50:
+    elif risk_score <= 0.65:
         risk_category = "Medium Risk"
-    elif score >= 30:
+    elif risk_score <= 0.85:
         risk_category = "High Risk"
     else:
         risk_category = "Critical Risk"
         
-    # 3. Default Probability
-    default_prob = float(model_default.predict(row_df)[0])
-    default_prob = np.clip(default_prob, 0.0, 1.0)
+    # 4. Multi-conditional Loan Eligibility Safety Rules
+    model_elig = bool(model_loan.predict(row_df)[0])
     
-    # 4. Loan Eligibility
-    eligible = bool(model_loan.predict(row_df)[0])
+    default_history = float(inputs_dict.get("Default_History", 0.0))
+    emi_delay_count = float(inputs_dict.get("EMI_Delay_Count", 0.0))
+    gst_compliance = float(inputs_dict.get("GST_Compliance_Mean", 94.0))
     
-    # Recommended Limit
+    rule_elig = (
+        (score >= 60.0) &
+        (default_prob <= 0.40) &
+        (default_history == 0) &
+        (emi_delay_count <= 3) &
+        (leverage <= 0.5) &
+        (gst_compliance >= 65)
+    )
+    
+    eligible = bool(model_elig and rule_elig)
+    
     max_loan = 0.0
-    turnover = float(inputs_dict.get("Annual_Turnover", 10000000.0))
     if eligible:
         max_loan = float(np.round((turnover * 0.25 * (score / 100.0)), -4))
         
@@ -153,3 +226,63 @@ def predict_single(inputs_dict: Dict[str, Any]) -> Tuple[float, str, float, bool
     ]
     
     return score, risk_category, default_prob, eligible, max_loan, top_positive, top_negative
+
+def predict_metrics(row_df: pd.DataFrame, turnover: float) -> Tuple[float, str, float, bool, float]:
+    score = float(model_health.predict(row_df)[0])
+    score = np.clip(score, 0.0, 100.0)
+    
+    default_prob = float(model_default.predict(row_df)[0])
+    default_prob = np.clip(default_prob, 0.0, 1.0)
+    
+    outstanding = float(row_df.get("Outstanding_Principal_Total", pd.Series([0.0]))[0])
+    leverage = outstanding / max(turnover, 1.0)
+    
+    health_deficit = 1.0 - (score / 100.0)
+    gst_deficit = 1.0 - (float(row_df.get("GST_Compliance_Mean", pd.Series([94.0]))[0]) / 100.0)
+    current_ratio = float(row_df.get("Current_Ratio_Mean", pd.Series([1.8]))[0])
+    liquidity_deficit = np.clip(1.0 - (current_ratio / 1.5), 0.0, 1.0)
+    
+    risk_score = (
+        health_deficit * 0.25 +
+        default_prob * 0.25 +
+        float(row_df.get("Default_History", pd.Series([0.0]))[0]) * 0.20 +
+        np.clip(float(row_df.get("EMI_Delay_Count", pd.Series([0.0]))[0]) * 0.05, 0.0, 0.15) +
+        np.clip(leverage * 0.15, 0.0, 0.15) +
+        liquidity_deficit * 0.05 +
+        gst_deficit * 0.05
+    )
+    risk_score = np.clip(risk_score, 0.0, 1.0)
+    
+    if risk_score <= 0.25:
+        risk_category = "Excellent"
+    elif risk_score <= 0.45:
+        risk_category = "Low Risk"
+    elif risk_score <= 0.65:
+        risk_category = "Medium Risk"
+    elif risk_score <= 0.85:
+        risk_category = "High Risk"
+    else:
+        risk_category = "Critical Risk"
+        
+    model_elig = bool(model_loan.predict(row_df)[0])
+    
+    default_history = float(row_df.get("Default_History", pd.Series([0.0]))[0])
+    emi_delay_count = float(row_df.get("EMI_Delay_Count", pd.Series([0.0]))[0])
+    gst_compliance = float(row_df.get("GST_Compliance_Mean", pd.Series([94.0]))[0])
+    
+    rule_elig = (
+        (score >= 60.0) &
+        (default_prob <= 0.40) &
+        (default_history == 0) &
+        (emi_delay_count <= 3) &
+        (leverage <= 0.5) &
+        (gst_compliance >= 65)
+    )
+    
+    eligible = bool(model_elig and rule_elig)
+    
+    max_loan = 0.0
+    if eligible:
+        max_loan = float(np.round((turnover * 0.25 * (score / 100.0)), -4))
+        
+    return score, risk_category, default_prob, eligible, max_loan

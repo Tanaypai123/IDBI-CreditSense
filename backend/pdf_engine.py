@@ -121,7 +121,8 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
     story.append(Paragraph("Credit Underwriting Verdict", section_style))
     data = [
         ["Evaluation Metric", "Quantified Value", "Status / Classification"],
-        ["Financial Health Score", f"{score:.1f} / 100", risk_category],
+        ["Financial Health Score", f"{score:.1f} / 100", "STANDARD" if score >= 60 else "STRESSED"],
+        ["Credit Risk Rating", risk_category, "Multi-Factor Assessment"],
         ["Default Probability", f"{default_prob * 100:.2f}%", "NPA Risk" if default_prob > 0.5 else "STANDARD"],
         ["Credit Eligibility Result", "APPROVED" if eligible else "REJECTED", f"Limit: {max_loan:,.2f} INR" if eligible else "N/A"]
     ]
@@ -163,15 +164,39 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
     # Recommendations
     story.append(Paragraph("Actionable Recommendations & Underwriting Advisories", section_style))
     recs = []
-    if score >= 85:
-      recs.append("<b>Pristine Credit Class</b>: Entity demonstrates healthy GST filing rates. Approved for standard limits onboarding.")
-    elif score >= 70:
-      recs.append("<b>Standard Overdraft Limit</b>: Approved for credit sweep lines. GST delinquency check synced successfully.")
-    elif score >= 50:
-      recs.append("<b>Stressed Capital Ratio Alert</b>: Require monthly swept accounts, bank sweeps, or escrow margins.")
-    else:
-      recs.append("<b>Restricted Risk Tier</b>: Score falls below risk thresholds. Lock priority sector release codes.")
-      
+    
+    defaults = float(inputs.get("Default_History", 0.0))
+    emi_delays = float(inputs.get("EMI_Delay_Count", 0.0))
+    gst_score = float(inputs.get("GST_Compliance_Mean", 94.0))
+    margin = float(inputs.get("Profit_Margin_Mean", 0.18))
+    current_ratio = float(inputs.get("Current_Ratio_Mean", 1.8))
+    turnover = float(inputs.get("Annual_Turnover", 1.0))
+    outstanding = float(inputs.get("Outstanding_Principal_Total", 0.0))
+    leverage = outstanding / max(turnover, 1.0)
+    digital = float(inputs.get("Digital_Adoption_Score", 0.7))
+    
+    if defaults > 0:
+        recs.append("<b>Default History Alert</b>: Historical default record detected. Require mandatory promoter guarantees.")
+    if emi_delays > 0:
+        recs.append(f"<b>EMI Repayment Friction</b>: Flagged {int(emi_delays)} past EMI delay counts. Monitor monthly sweeps.")
+    if gst_score < 75:
+        recs.append(f"<b>GST Compliance Warning</b>: Tax filing compliance is low ({gst_score:.1f}%). Audit latest return receipts.")
+    if margin < 0:
+        recs.append(f"<b>Operating Profit Deficit</b>: Cash margin is negative ({margin*100:.1f}%). Limit unsecured credit lines.")
+    if current_ratio < 1.0:
+        recs.append(f"<b>Liquidity Warning</b>: Current ratio ({current_ratio:.2f}) indicates potential working capital shortfalls.")
+    if leverage > 0.35:
+        recs.append(f"<b>High Leverage Burden</b>: Debt-to-turnover ratio ({leverage*100:.1f}%) is elevated. Lock priority codes.")
+    if digital < 0.40:
+        recs.append(f"<b>Digitalization Opportunity</b>: Digital adoption score is low ({digital*100:.1f}%). Transition to UPI collection flows.")
+        
+    if score >= 85 and not recs:
+        recs.append("<b>Pristine Credit Class</b>: Entity demonstrates healthy GST filing rates. Approved for standard limits onboarding.")
+    elif score >= 70 and not recs:
+        recs.append("<b>Standard Overdraft Limit</b>: Approved for credit sweep lines. GST delinquency check synced successfully.")
+    elif not recs:
+        recs.append("<b>Stressed Capital Ratio Alert</b>: Require monthly swept accounts, bank sweeps, or escrow margins.")
+        
     for rec in recs:
         story.append(Paragraph(f"&bull; {rec}", body_style))
         

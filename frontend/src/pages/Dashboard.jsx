@@ -85,7 +85,7 @@ export default function Dashboard() {
     { title: "Batch Processing", desc: "Automated bulk CSV underwriting processor evaluates hundreds of portfolios in parallel.", icon: Layers },
     { title: "Portfolio Analytics", desc: "Aggregate correlation heatmaps, default ratios, and distribution charts for risk managers.", icon: TrendingUp },
     { title: "PDF Reports", desc: "Exports bank-ready regulatory audit PDFs complete with model parameters and signatures.", icon: FileText },
-    { title: "Risk Classification", desc: "Classifies MSMEs into standard risk tiers (SMA-0, SMA-1, SMA-2) to fit compliance models.", icon: ShieldAlert },
+    { title: "Credit Risk Rating", desc: "Classifies MSMEs into standard risk tiers (Excellent, Low Risk, Medium Risk, High Risk, Critical Risk) using multi-factor compliance models.", icon: ShieldAlert },
     { title: "Credit Recommendation", desc: "Auto-determines maximum approved capital limits based on cash flow margins and GST delays.", icon: UserCheck }
   ];
 
@@ -566,7 +566,7 @@ export default function Dashboard() {
             <div className="lg:col-span-2 space-y-8">
               <Card title="Recent Credit Underwriting Audits">
                 <TableComponent 
-                  headers={['Business ID', 'Legal Name', 'Sector', 'Score', 'Risk Rating', 'Approved Limit']}
+                  headers={['Business ID', 'Legal Name', 'Sector', 'Score', 'Credit Risk Rating', 'Approved Limit']}
                   data={recentAssessments}
                   renderRow={(row, idx) => (
                     <tr key={idx} className="hover:bg-slate-50/50 transition-colors">

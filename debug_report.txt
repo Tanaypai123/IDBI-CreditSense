@@ -1,0 +1,289 @@
+==================================================
+XYZ TRADERS DEBUGGING REPORT
+==================================================
+
+--- 1. Captured JSON Payload ---
+{
+  "biz_name": "XYZ Traders",
+  "Industry": "Textile",
+  "State": "Maharashtra",
+  "MSME_Type": "Micro",
+  "Business_Age_Yrs": 1.0,
+  "Annual_Turnover": 800000.0,
+  "Digital_Adoption_Score": 0.2,
+  "Industry_Risk": 0.9,
+  "Profit_Margin_Mean": -0.05,
+  "Revenue_Growth_MoM_Mean": -0.12,
+  "Revenue_Std": 150000.0,
+  "Working_Capital_Mean": 50000.0,
+  "Current_Ratio_Mean": 0.6,
+  "Quick_Ratio_Mean": 0.4,
+  "DPO_Mean": 60.0,
+  "Cashflow_Stability_Mean": 0.85,
+  "Revenue_Trend_Slope": 1500.0,
+  "Profit_Margin_Trend": 0.002,
+  "GST_Compliance_Mean": 45.0,
+  "GST_OnTime_Rate": 40.0,
+  "GST_Delay_Days_Std": 12.0,
+  "GST_Filing_Consistency": 0.88,
+  "UPI_Transactions_Mean": 50.0,
+  "UPI_Volume_Total": 300000.0,
+  "UPI_Order_Value_Mean": 300.0,
+  "Active_Loan_Count": 5.0,
+  "Total_Loan_Amount": 4000000.0,
+  "Outstanding_Principal_Total": 3500000.0,
+  "EMI_Delay_Count": 8.0,
+  "Default_History": 1.0,
+  "Current_Employees": 12.0,
+  "Average_Salary": 30000.0,
+  "Annual_Attrition_Rate": 0.35,
+  "Hiring_Trend_Pct": 0.05,
+  "Net_Employees_Added": 1.0,
+  "EPFO_Registered": 0.0,
+  "Skill_Level_Index": 0.35
+}
+
+--- 2. Raw Input Values ---
+  biz_name: XYZ Traders
+  Industry: Textile
+  State: Maharashtra
+  MSME_Type: Micro
+  Business_Age_Yrs: 1.0
+  Annual_Turnover: 800000.0
+  Digital_Adoption_Score: 0.2
+  Industry_Risk: 0.9
+  Profit_Margin_Mean: -0.05
+  Revenue_Growth_MoM_Mean: -0.12
+  Revenue_Std: 150000.0
+  Working_Capital_Mean: 50000.0
+  Current_Ratio_Mean: 0.6
+  Quick_Ratio_Mean: 0.4
+  DPO_Mean: 60.0
+  Cashflow_Stability_Mean: 0.85
+  Revenue_Trend_Slope: 1500.0
+  Profit_Margin_Trend: 0.002
+  GST_Compliance_Mean: 45.0
+  GST_OnTime_Rate: 40.0
+  GST_Delay_Days_Std: 12.0
+  GST_Filing_Consistency: 0.88
+  UPI_Transactions_Mean: 50.0
+  UPI_Volume_Total: 300000.0
+  UPI_Order_Value_Mean: 300.0
+  Active_Loan_Count: 5.0
+  Total_Loan_Amount: 4000000.0
+  Outstanding_Principal_Total: 3500000.0
+  EMI_Delay_Count: 8.0
+  Default_History: 1.0
+  Current_Employees: 12.0
+  Average_Salary: 30000.0
+  Annual_Attrition_Rate: 0.35
+  Hiring_Trend_Pct: 0.05
+  Net_Employees_Added: 1.0
+  EPFO_Registered: 0.0
+  Skill_Level_Index: 0.35
+
+--- 3. Derived Features in ml_engine.py ---
+  Business_Age_Yrs: 1.0
+  Annual_Turnover: 800000.0
+  Digital_Adoption_Score: 0.2
+  Industry_Risk: 0.9
+  Revenue_Std: 150000.0
+  Revenue_Growth_MoM_Mean: -0.12
+  Profit_Margin_Mean: -0.05
+  Working_Capital_Mean: 50000.0
+  Current_Ratio_Mean: 0.6
+  Quick_Ratio_Mean: 0.4
+  DPO_Mean: 60.0
+  Cashflow_Stability_Mean: 0.85
+  Revenue_Trend_Slope: 1500.0
+  Profit_Margin_Trend: 0.002
+  GST_Compliance_Mean: 45.0
+  GST_Delay_Days_Std: 12.0
+  GST_Filing_Consistency: 0.88
+  GST_OnTime_Rate: 40.0
+  UPI_Transactions_Mean: 50.0
+  UPI_Volume_Total: 300000.0
+  UPI_Order_Value_Mean: 300.0
+  Active_Loan_Count: 5.0
+  Total_Loan_Amount: 4000000.0
+  Outstanding_Principal_Total: 3500000.0
+  EMI_Delay_Count: 8.0
+  Default_History: 1.0
+  Annual_Attrition_Rate: 0.35
+  Hiring_Trend_Pct: 0.05
+  Net_Employees_Added: 1.0
+  Average_Salary: 30000.0
+  EPFO_Registered: 0.0
+  Skill_Level_Index: 0.35
+  Industry_Agriculture: 0.0
+  Industry_Automobile: 0.0
+  Industry_Bakery: 0.0
+  Industry_Construction: 0.0
+  Industry_Dairy: 0.0
+  Industry_Education: 0.0
+  Industry_Electronics: 0.0
+  Industry_Furniture: 0.0
+  Industry_Hardware: 0.0
+  Industry_IT: 0.0
+  Industry_Manufacturing: 0.0
+  Industry_Medical: 0.0
+  Industry_Mobile Shop: 0.0
+  Industry_Pharmacy: 0.0
+  Industry_Printing: 0.0
+  Industry_Restaurant: 0.0
+  Industry_Retail: 0.0
+  Industry_Textile: 1.0
+  Industry_Transport: 0.0
+  Industry_Wholesale: 0.0
+  State_Delhi: 0.0
+  State_Gujarat: 0.0
+  State_Karnataka: 0.0
+  State_Maharashtra: 1.0
+  State_Rajasthan: 0.0
+  State_Tamil Nadu: 0.0
+  State_Telangana: 0.0
+  State_Uttar Pradesh: 0.0
+  MSME_Type_Medium: 0.0
+  MSME_Type_Micro: 1.0
+  MSME_Type_Small: 0.0
+
+--- 4. Running validate_underwriting simulation ---
+
+--- 5. Derived Features in validate_underwriting.py ---
+  Business_Age_Yrs: 1.0
+  Annual_Turnover: 800000.0
+  Digital_Adoption_Score: 0.2
+  Industry_Risk: 0.9
+  Revenue_Std: 150000.0
+  Revenue_Growth_MoM_Mean: -0.12
+  Profit_Margin_Mean: -0.05
+  Working_Capital_Mean: 50000.0
+  Current_Ratio_Mean: 0.6
+  Quick_Ratio_Mean: 0.4
+  DPO_Mean: 60.0
+  Cashflow_Stability_Mean: 0.85
+  Revenue_Trend_Slope: 1500.0
+  Profit_Margin_Trend: 0.002
+  GST_Compliance_Mean: 45.0
+  GST_Delay_Days_Std: 12.0
+  GST_Filing_Consistency: 0.88
+  GST_OnTime_Rate: 40.0
+  UPI_Transactions_Mean: 50.0
+  UPI_Volume_Total: 300000.0
+  UPI_Order_Value_Mean: 300.0
+  Active_Loan_Count: 5.0
+  Total_Loan_Amount: 4000000.0
+  Outstanding_Principal_Total: 3500000.0
+  EMI_Delay_Count: 8.0
+  Default_History: 1.0
+  Annual_Attrition_Rate: 0.35
+  Hiring_Trend_Pct: 0.05
+  Net_Employees_Added: 1.0
+  Average_Salary: 30000.0
+  EPFO_Registered: 0.0
+  Skill_Level_Index: 0.35
+  Industry_Agriculture: 0.0
+  Industry_Automobile: 0.0
+  Industry_Bakery: 0.0
+  Industry_Construction: 0.0
+  Industry_Dairy: 0.0
+  Industry_Education: 0.0
+  Industry_Electronics: 0.0
+  Industry_Furniture: 0.0
+  Industry_Hardware: 0.0
+  Industry_IT: 0.0
+  Industry_Manufacturing: 0.0
+  Industry_Medical: 0.0
+  Industry_Mobile Shop: 0.0
+  Industry_Pharmacy: 0.0
+  Industry_Printing: 0.0
+  Industry_Restaurant: 0.0
+  Industry_Retail: 0.0
+  Industry_Textile: 1.0
+  Industry_Transport: 0.0
+  Industry_Wholesale: 0.0
+  State_Delhi: 0.0
+  State_Gujarat: 0.0
+  State_Karnataka: 0.0
+  State_Maharashtra: 1.0
+  State_Rajasthan: 0.0
+  State_Tamil Nadu: 0.0
+  State_Telangana: 0.0
+  State_Uttar Pradesh: 0.0
+  MSME_Type_Medium: 0.0
+  MSME_Type_Micro: 1.0
+  MSME_Type_Small: 0.0
+
+--- 6. Line-by-Line Feature Vector Comparison ---
+  Business_Age_Yrs: 1.0 vs 1.0 => OK
+  Annual_Turnover: 800000.0 vs 800000.0 => OK
+  Digital_Adoption_Score: 0.2 vs 0.2 => OK
+  Industry_Risk: 0.9 vs 0.9 => OK
+  Revenue_Std: 150000.0 vs 150000.0 => OK
+  Revenue_Growth_MoM_Mean: -0.12 vs -0.12 => OK
+  Profit_Margin_Mean: -0.05 vs -0.05 => OK
+  Working_Capital_Mean: 50000.0 vs 50000.0 => OK
+  Current_Ratio_Mean: 0.6 vs 0.6 => OK
+  Quick_Ratio_Mean: 0.4 vs 0.4 => OK
+  DPO_Mean: 60.0 vs 60.0 => OK
+  Cashflow_Stability_Mean: 0.85 vs 0.85 => OK
+  Revenue_Trend_Slope: 1500.0 vs 1500.0 => OK
+  Profit_Margin_Trend: 0.002 vs 0.002 => OK
+  GST_Compliance_Mean: 45.0 vs 45.0 => OK
+  GST_Delay_Days_Std: 12.0 vs 12.0 => OK
+  GST_Filing_Consistency: 0.88 vs 0.88 => OK
+  GST_OnTime_Rate: 40.0 vs 40.0 => OK
+  UPI_Transactions_Mean: 50.0 vs 50.0 => OK
+  UPI_Volume_Total: 300000.0 vs 300000.0 => OK
+  UPI_Order_Value_Mean: 300.0 vs 300.0 => OK
+  Active_Loan_Count: 5.0 vs 5.0 => OK
+  Total_Loan_Amount: 4000000.0 vs 4000000.0 => OK
+  Outstanding_Principal_Total: 3500000.0 vs 3500000.0 => OK
+  EMI_Delay_Count: 8.0 vs 8.0 => OK
+  Default_History: 1.0 vs 1.0 => OK
+  Annual_Attrition_Rate: 0.35 vs 0.35 => OK
+  Hiring_Trend_Pct: 0.05 vs 0.05 => OK
+  Net_Employees_Added: 1.0 vs 1.0 => OK
+  Average_Salary: 30000.0 vs 30000.0 => OK
+  EPFO_Registered: 0.0 vs 0.0 => OK
+  Skill_Level_Index: 0.35 vs 0.35 => OK
+  Industry_Agriculture: 0.0 vs 0.0 => OK
+  Industry_Automobile: 0.0 vs 0.0 => OK
+  Industry_Bakery: 0.0 vs 0.0 => OK
+  Industry_Construction: 0.0 vs 0.0 => OK
+  Industry_Dairy: 0.0 vs 0.0 => OK
+  Industry_Education: 0.0 vs 0.0 => OK
+  Industry_Electronics: 0.0 vs 0.0 => OK
+  Industry_Furniture: 0.0 vs 0.0 => OK
+  Industry_Hardware: 0.0 vs 0.0 => OK
+  Industry_IT: 0.0 vs 0.0 => OK
+  Industry_Manufacturing: 0.0 vs 0.0 => OK
+  Industry_Medical: 0.0 vs 0.0 => OK
+  Industry_Mobile Shop: 0.0 vs 0.0 => OK
+  Industry_Pharmacy: 0.0 vs 0.0 => OK
+  Industry_Printing: 0.0 vs 0.0 => OK
+  Industry_Restaurant: 0.0 vs 0.0 => OK
+  Industry_Retail: 0.0 vs 0.0 => OK
+  Industry_Textile: 1.0 vs 1.0 => OK
+  Industry_Transport: 0.0 vs 0.0 => OK
+  Industry_Wholesale: 0.0 vs 0.0 => OK
+  State_Delhi: 0.0 vs 0.0 => OK
+  State_Gujarat: 0.0 vs 0.0 => OK
+  State_Karnataka: 0.0 vs 0.0 => OK
+  State_Maharashtra: 1.0 vs 1.0 => OK
+  State_Rajasthan: 0.0 vs 0.0 => OK
+  State_Tamil Nadu: 0.0 vs 0.0 => OK
+  State_Telangana: 0.0 vs 0.0 => OK
+  State_Uttar Pradesh: 0.0 vs 0.0 => OK
+  MSME_Type_Medium: 0.0 vs 0.0 => OK
+  MSME_Type_Micro: 1.0 vs 1.0 => OK
+  MSME_Type_Small: 0.0 vs 0.0 => OK
+
+--- 7. No Mismatch Detected in Feature Vectors ---
+
+--- 8. Prediction Probabilities and Outputs ---
+  Health Score: 23.84083328481929
+  Default Probability Model Prediction: 0.969843418985702
+  Loan Eligibility Model Prediction: 0.01083013042807579
+  Final Decision (Eligible): False
+  Max Approved Loan: 0.0

@@ -107,7 +107,7 @@ export default function Batch() {
     setSelectedBizDetail(detail);
   };
 
-  const tableHeaders = ['Business ID', 'Health Score', 'Risk Category', 'Default Prob', 'Credit Limit', 'Action'];
+  const tableHeaders = ['Business ID', 'Health Score', 'Credit Risk Rating', 'Default Prob', 'Credit Limit', 'Action'];
 
   const renderRow = (row, idx) => (
     <tr 

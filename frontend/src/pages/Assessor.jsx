@@ -213,16 +213,38 @@ export default function Assessor() {
     const score = results.score;
     const defaultProb = results.default_probability * 100;
     const gstScore = form.GST_Compliance_Mean;
+    const margin = form.Profit_Margin_Mean;
+    const currentRatio = form.Current_Ratio_Mean;
+    const defaults = form.Default_History;
+    const emiDelays = form.EMI_Delay_Count;
+    const leverage = form.Outstanding_Principal_Total / Math.max(form.Annual_Turnover, 1.0);
+    const digital = form.Digital_Adoption_Score;
 
+    let reasons = [];
+    if (defaults > 0) reasons.push("historical default records detected on past credit lines");
+    if (emiDelays > 3) reasons.push(`severe loan repayment strain (${emiDelays} EMI delays)`);
+    else if (emiDelays > 0) reasons.push(`minor repayment friction (${emiDelays} late EMI payments)`);
+    if (gstScore < 70) reasons.push(`poor tax compliance (GST score of ${gstScore}%)`);
+    if (margin < 0) reasons.push(`unprofitable operations (negative operating margin of ${(margin*100).toFixed(1)}%)`);
+    if (currentRatio < 1.0) reasons.push(`weak liquidity backing (current ratio of ${currentRatio})`);
+    if (leverage > 0.35) reasons.push(`high debt leverage burden (debt-to-turnover ratio of ${(leverage*100).toFixed(0)}%)`);
+    if (digital < 0.4) reasons.push("low digital collections adoption rate");
+
+    let recText = "";
     if (score >= 85) {
-      return `This MSME demonstrates pristine financial creditworthiness, healthy GST compliance of ${gstScore}%, and stable operating margins. The model recommends immediate approval for a working capital limit of ${results.max_loan.toLocaleString()} INR, subject to standard KYC validations. Defaults risk is negligible at ${defaultProb.toFixed(1)}%.`;
+      recText = `This MSME demonstrates pristine financial creditworthiness, healthy GST compliance of ${gstScore}%, and stable operating margins. The model recommends immediate approval for a working capital limit of ${results.max_loan.toLocaleString()} INR, subject to standard KYC validations. Defaults risk is negligible at ${defaultProb.toFixed(1)}%.`;
     } else if (score >= 70) {
-      return `This MSME demonstrates stable credit indices with minor compliance deviations. GST delays or turnover volatility present moderate variance, but consistent UPI volumes support debt servicing capacity. Approved for a working capital overdraft up to ${results.max_loan.toLocaleString()} INR.`;
+      recText = `This MSME demonstrates stable credit indices with minor compliance deviations. GST delays or turnover volatility present moderate variance, but consistent UPI volumes support debt servicing capacity. Approved for a working capital overdraft up to ${results.max_loan.toLocaleString()} INR.`;
     } else if (score >= 50) {
-      return `This MSME presents stressed capital ratios and elevated compliance delays. Debt coverage is tight, and default transition probability stands at ${defaultProb.toFixed(1)}%. Recommended for structured trade credit facilities with monthly receivables sweeps.`;
+      recText = `This MSME presents stressed capital ratios and elevated compliance delays. Debt coverage is tight, and default transition probability stands at ${defaultProb.toFixed(1)}%. Recommended for structured trade credit facilities with monthly receivables sweeps.`;
     } else {
-      return `This MSME exhibits high credit risk exposure. Low operating margins, outstanding debt loads, and a default risk of ${defaultProb.toFixed(1)}% require restrictive covenants. Term credit facilities are locked. Propose structured restructuring reviews.`;
+      recText = `This MSME exhibits high credit risk exposure. Low operating margins, outstanding debt loads, and a default risk of ${defaultProb.toFixed(1)}% require restrictive covenants. Term credit facilities are locked. Propose structured restructuring reviews.`;
     }
+
+    if (reasons.length > 0) {
+      recText += ` Underwriting analysis flagged key risk indicators: ${reasons.join("; ")}; requiring strict supervisory monitoring.`;
+    }
+    return recText;
   };
 
   const getHealthStatusColor = () => {
@@ -1016,10 +1038,12 @@ export default function Assessor() {
 
             {/* EXECUTIVE SUMMARY WIDGET */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between h-32 hover:shadow-premium-hover transition-all duration-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Risk Classification</span>
+              <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between min-h-32 hover:shadow-premium-hover transition-all duration-300">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Credit Risk Rating</span>
                 <h2 className="text-xl font-bold tracking-tight text-slate-800 font-outfit mt-2">{results.risk_category}</h2>
-                <p className="text-[10px] text-slate-400 mt-1 leading-none font-inter">Basel compliant categorization</p>
+                <p className="text-[9px] text-slate-400 mt-1.5 leading-normal font-inter">
+                  Credit Risk Rating is calculated using repayment history, leverage, liquidity, compliance, and financial health.
+                </p>
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between h-32 hover:shadow-premium-hover transition-all duration-300">
