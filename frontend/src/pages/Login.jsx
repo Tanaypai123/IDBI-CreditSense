@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Shield } from 'lucide-react';
 import Card from '../components/Card';
+import IDBILogo from '../components/IDBILogo';
 
 export default function Login() {
   const { login } = useAuth();
@@ -23,19 +24,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center items-center font-sans p-4">
+    <div className="min-h-screen bg-[#F5F7FA] flex flex-col justify-center items-center font-sans p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Branding header */}
-        <div className="flex flex-col items-center text-center space-y-3">
-          <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold font-outfit text-xl">
-            ID
-          </div>
+        <div className="flex flex-col items-center text-center space-y-4">
+          <IDBILogo size={48} className="justify-center" showText={true} />
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-slate-800 font-outfit">
-              IDBI Risk Platform
+            <h1 className="text-lg font-black tracking-tight text-slate-800 font-poppins">
+              IDBI CreditSense
             </h1>
-            <p className="text-xs text-slate-500 font-medium">
-              Access the secure credit underwriting console.
+            <p className="text-xs text-[#F26C21] font-bold font-inter tracking-wider uppercase mt-1">
+              AI Powered MSME Credit Intelligence Platform
             </p>
           </div>
         </div>
@@ -72,7 +71,7 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg text-xs font-outfit tracking-wider uppercase transition-all duration-200 shadow-sm"
+              className="w-full bg-[#00796B] hover:bg-[#00695C] text-white font-bold py-2.5 rounded-lg text-xs font-poppins tracking-wider uppercase transition-all duration-200 shadow-sm hover:scale-[1.01]"
             >
               Sign In to Console
             </button>

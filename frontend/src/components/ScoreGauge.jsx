@@ -6,7 +6,7 @@ export default function ScoreGauge({ score, title }) {
   const circumference = 2 * Math.PI * r;
   const dashoffset = circumference * (100 - score) / 100;
 
-  let strokeColor = '#2563EB'; // Primary Blue
+  let strokeColor = '#00796B'; // Primary Green
   if (score < 50) {
     strokeColor = '#DC2626'; // Danger Red
   } else if (score < 70) {
@@ -22,7 +22,7 @@ export default function ScoreGauge({ score, title }) {
       className="flex flex-col items-center justify-center p-6 bg-white border border-slate-200/80 rounded-xl shadow-premium hover:shadow-premium-hover transition-all duration-300 h-full"
     >
       {title && (
-        <h4 className="text-[10px] font-bold tracking-wider text-slate-400 uppercase mb-4 font-outfit">
+        <h4 className="text-[10px] font-bold tracking-wider text-slate-400 uppercase mb-4 font-poppins">
           {title}
         </h4>
       )}
@@ -54,7 +54,7 @@ export default function ScoreGauge({ score, title }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl font-bold tracking-tight text-slate-800 font-outfit leading-none"
+            className="text-3xl font-bold tracking-tight text-slate-800 font-poppins leading-none"
           >
             {score.toFixed(1)}
           </motion.span>

@@ -46,17 +46,17 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
     banner_title_style = ParagraphStyle(
         'BannerTitle',
         parent=styles['Heading1'],
-        fontSize=22,
-        leading=26,
+        fontSize=20,
+        leading=24,
         textColor=colors.whitesmoke,
-        spaceAfter=2
+        spaceAfter=3
     )
     banner_subtitle_style = ParagraphStyle(
         'BannerSubTitle',
         parent=styles['Normal'],
-        fontSize=9,
+        fontSize=8.5,
         leading=11,
-        textColor=colors.HexColor('#93C5FD'),
+        textColor=colors.HexColor('#FFB74D'), # Warm orange/gold
         spaceAfter=0
     )
 
@@ -65,7 +65,7 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
         parent=styles['Heading2'],
         fontSize=12,
         leading=14,
-        textColor=colors.HexColor('#0F172A'),
+        textColor=colors.HexColor('#00796B'), # IDBI Green
         spaceBefore=14,
         spaceAfter=8
     )
@@ -75,18 +75,18 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
         parent=styles['Normal'],
         fontSize=9.5,
         leading=13,
-        textColor=colors.HexColor('#334155'),
+        textColor=colors.HexColor('#1F2937'), # Dark text
         spaceAfter=8
     )
     
     # Premium Header Banner Card using ReportLab Table
     banner_content = [
-        [Paragraph("IDBI CreditSense", banner_title_style)],
-        [Paragraph("Predict  •  Explain  •  Approve &nbsp;&nbsp;|&nbsp;&nbsp; MSME Credit Intelligence Platform", banner_subtitle_style)]
+        [Paragraph("IDBI BANK &nbsp;|&nbsp; CreditSense", banner_title_style)],
+        [Paragraph("Bank Aisa Dost Jaisa &nbsp;&nbsp;|&nbsp;&nbsp; AI-Powered MSME Credit Intelligence Platform &nbsp;&nbsp;|&nbsp;&nbsp; Predict • Explain • Approve", banner_subtitle_style)]
     ]
     banner_table = Table(banner_content, colWidths=[520])
     banner_table.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#2563EB')),
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#00796B')), # IDBI Green
         ('TOPPADDING', (0,0), (-1,-1), 12),
         ('BOTTOMPADDING', (0,0), (-1,-1), 12),
         ('LEFTPADDING', (0,0), (-1,-1), 14),
@@ -128,7 +128,7 @@ def generate_pdf_report(biz_name: str, score: float, risk_category: str, default
     ]
     t = Table(data, colWidths=[200, 160, 160])
     t.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#0F172A')),
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#00796B')), # IDBI Green Header
         ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke),
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),

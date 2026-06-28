@@ -6,7 +6,7 @@ export default function Gauge({ score, title }) {
   const dashoffset = circumference * (100 - score) / 100;
 
   // Stripe-blue for good health, amber/orange for moderate, rose/red for warning
-  let strokeColor = '#0061FF'; // Brand Blue
+  let strokeColor = '#00796B'; // Primary Green
   if (score < 50) {
     strokeColor = '#EF4444'; // Red
   } else if (score < 70) {
@@ -16,7 +16,7 @@ export default function Gauge({ score, title }) {
   return (
     <div className="flex flex-col items-center justify-center p-4 bg-white border border-slate-200/60 rounded-xl shadow-premium h-full">
       {title && (
-        <h4 className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4 font-outfit">
+        <h4 className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4 font-poppins">
           {title}
         </h4>
       )}
@@ -46,7 +46,7 @@ export default function Gauge({ score, title }) {
           />
         </svg>
         <div className="absolute flex flex-col items-center justify-center">
-          <span className="text-3xl font-bold tracking-tight text-slate-800 font-outfit">
+          <span className="text-3xl font-bold tracking-tight text-slate-800 font-poppins">
             {score.toFixed(1)}
           </span>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">

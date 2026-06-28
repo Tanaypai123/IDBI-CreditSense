@@ -11,7 +11,7 @@ export default function Card({ title, children, className = "" }) {
       className={`bg-white border border-slate-200/60 rounded-xl p-6 shadow-premium transition-shadow duration-300 ${className}`}
     >
       {title && (
-        <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 mb-5 font-outfit">
+        <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 mb-5 font-poppins">
           {title}
         </h3>
       )}

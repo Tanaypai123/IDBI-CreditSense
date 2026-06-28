@@ -25,10 +25,12 @@ import {
   Zap,
   Play
 } from 'lucide-react';
+import IDBILogo from '../components/IDBILogo';
 import KPICard from '../components/KPICard';
 import Card from '../components/Card';
 import TableComponent from '../components/TableComponent';
 import StatusBadge from '../components/StatusBadge';
+import FlowDiagram from '../components/FlowDiagram';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -152,39 +154,41 @@ export default function Dashboard() {
           <div className="absolute bottom-[200px] left-[-200px] w-[600px] h-[600px] bg-slate-500/5 rounded-full blur-3xl pointer-events-none" />
 
           {/* HERO SECTION */}
-          <section className="max-w-[1400px] mx-auto px-12 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-b border-slate-200/50 relative z-10">
+          <section className="max-w-[1400px] mx-auto px-4 md:px-12 py-10 md:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-b border-slate-200/50 relative z-10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="lg:col-span-7 space-y-8"
+              className="lg:col-span-6 space-y-6"
             >
-              <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 text-blue-600 px-3.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-outfit shadow-sm">
+              <IDBILogo size={52} showText={true} className="mb-2" />
+              
+              <div className="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-100 text-emerald-700 px-3.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-poppins shadow-sm">
                 <span>Predict • Explain • Approve</span>
               </div>
               
-              <h1 className="text-5xl lg:text-[60px] font-extrabold tracking-tight text-slate-900 leading-[1.05] font-outfit">
+              <h1 className="text-4xl lg:text-[52px] font-black tracking-tight text-slate-900 leading-[1.1] font-poppins">
                 IDBI CreditSense <br />
-                <span className="text-blue-600 text-3xl lg:text-[38px] font-bold block mt-3">
+                <span className="text-[#00796B] text-2xl lg:text-[34px] font-bold block mt-2">
                   AI-Powered MSME Credit Intelligence Platform
                 </span>
               </h1>
               
               <p className="text-sm text-slate-500 font-inter leading-relaxed max-w-xl">
-                Redefining priority sector lending with explainable machine learning models. Underwrite MSME accounts instantly with GST, UPI, and financial statement aggregates.
+                Redefining priority sector credit underwriting with banking-grade explainable AI models. Assess enterprise eligibility and approve MSME limits instantly using GST returns, UPI transactions, and cashflow aggregates.
               </p>
 
-              <div className="flex items-center space-x-4 pt-2 font-outfit font-bold uppercase tracking-wider text-xs">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 font-poppins font-bold uppercase tracking-wider text-xs">
                 <button 
                   onClick={() => setView("console")}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 rounded-lg shadow-sm hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0 active:scale-100 transition-all flex items-center space-x-2"
+                  className="bg-gradient-to-r from-[#00796B] to-[#F26C21] hover:from-[#00695C] hover:to-[#E05B13] text-white px-6 py-3 h-12 w-full sm:w-auto flex items-center justify-center rounded-lg shadow-md hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0 active:scale-100 transition-all space-x-2"
                 >
                   <Play className="w-3.5 h-3.5 fill-white" />
                   <span>Enter Credit Console</span>
                 </button>
                 <Link 
                   to="/assess"
-                  className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-6 py-3.5 rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
+                  className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-6 py-3 h-12 w-full sm:w-auto flex items-center justify-center rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
                 >
                   Start Assessment
                 </Link>
@@ -207,116 +211,53 @@ export default function Dashboard() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="lg:col-span-5 flex justify-center"
+              className="lg:col-span-6 flex justify-center w-full"
             >
-              <svg width="420" height="350" viewBox="0 0 420 350" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-[420px]">
-                <path d="M70 0V350M210 0V350M350 0V350" stroke="#F1F5F9" strokeWidth="1" />
-                <path d="M0 70H420M0 210H420M0 280H420" stroke="#F1F5F9" strokeWidth="1" />
-
-                <g transform="translate(40, 20)">
-                  {/* Row 1: Inputs */}
-                  <rect x="0" y="0" width="100" height="36" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1" className="shadow-sm" />
-                  <text x="50" y="22" fill="#475569" fontSize="9" fontFamily="Inter" fontWeight="bold" textAnchor="middle">MSME Business</text>
-
-                  <path d="M100 18H140" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" values="40;0" dur="2.5s" repeatCount="indefinite" />
-                  </path>
-
-                  {/* Row 1: GST */}
-                  <rect x="140" y="0" width="70" height="36" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1" className="shadow-sm" />
-                  <text x="175" y="22" fill="#475569" fontSize="9" fontFamily="Inter" fontWeight="bold" textAnchor="middle">GST Logs</text>
-
-                  <path d="M210 18H250" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 4">
-                    <animate attributeName="stroke-dashoffset" values="40;0" dur="2.5s" repeatCount="indefinite" />
-                  </path>
-
-                  {/* Row 1: Bank statement */}
-                  <rect x="250" y="0" width="90" height="36" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1" className="shadow-sm" />
-                  <text x="295" y="22" fill="#475569" fontSize="9" fontFamily="Inter" fontWeight="bold" textAnchor="middle">Bank Statements</text>
-
-                  {/* Vertical arrows to middle flow */}
-                  <path d="M50 36V70" stroke="#CBD5E1" strokeWidth="1.2" strokeDasharray="3 3" />
-                  <path d="M295 36V70" stroke="#CBD5E1" strokeWidth="1.2" strokeDasharray="3 3" />
-
-                  {/* Row 2: UPI & Financial statements */}
-                  <rect x="10" y="70" width="80" height="36" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1" className="shadow-sm" />
-                  <text x="50" y="92" fill="#475569" fontSize="9" fontFamily="Inter" fontWeight="bold" textAnchor="middle">UPI Sync</text>
-
-                  <rect x="250" y="70" width="90" height="36" rx="8" fill="white" stroke="#E5E7EB" strokeWidth="1" className="shadow-sm" />
-                  <text x="295" y="92" fill="#475569" fontSize="9" fontFamily="Inter" fontWeight="bold" textAnchor="middle">Financial Ledgers</text>
-
-                  {/* Downward flow to core engine */}
-                  <path d="M50 106C50 130 130 135 150 145" stroke="#CBD5E1" strokeWidth="1.2" />
-                  <path d="M295 106C295 130 210 135 190 145" stroke="#CBD5E1" strokeWidth="1.2" />
-
-                  {/* Core AI Risk Engine */}
-                  <rect x="120" y="145" width="100" height="46" rx="10" fill="#2563EB" className="shadow-premium" />
-                  <text x="170" y="168" fill="white" fontSize="10" fontFamily="Outfit" fontWeight="extrabold" textAnchor="middle">AI RISK ENGINE</text>
-                  <text x="170" y="180" fill="#EFF6FF" fontSize="7" fontFamily="Inter" textAnchor="middle">LGBM + XGBoost</text>
-
-                  {/* Pulsing indicator circle in the center */}
-                  <circle cx="170" cy="168" r="4" fill="#60A5FA">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite" />
-                  </circle>
-
-                  {/* Outward paths to final parameters */}
-                  <path d="M170 191V225" stroke="#2563EB" strokeWidth="1.5" />
-
-                  {/* Row 3: Credit scoring */}
-                  <rect x="125" y="225" width="90" height="36" rx="8" fill="white" stroke="#2563EB" strokeWidth="1.5" className="shadow-sm" />
-                  <text x="170" y="247" fill="#1E293B" fontSize="9" fontFamily="Outfit" fontWeight="bold" textAnchor="middle">Credit score</text>
-
-                  <path d="M170 261V280" stroke="#CBD5E1" strokeWidth="1.2" />
-
-                  {/* Row 4: Final Limit */}
-                  <rect x="110" y="280" width="120" height="36" rx="8" fill="#F0FDF4" stroke="#16A34A" strokeWidth="1" className="shadow-premium" />
-                  <text x="170" y="302" fill="#15803D" fontSize="9" fontFamily="Outfit" fontWeight="extrabold" textAnchor="middle">Loan Recommendation</text>
-                </g>
-              </svg>
+              <FlowDiagram />
             </motion.div>
           </section>
 
           {/* ANIMATED STATISTICS STRIP */}
           <section className="bg-white border-b border-slate-200 py-12 relative z-10">
-            <div className="max-w-[1400px] mx-auto px-12 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="max-w-[1400px] mx-auto px-4 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="flex items-center space-x-4">
                 <div className="p-3 bg-blue-50 text-blue-600 rounded-xl shadow-sm"><Database className="w-5 h-5" /></div>
                 <div className="space-y-0.5">
-                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-outfit block">{bizCount.toLocaleString()}+</span>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-outfit">Businesses Assessed</p>
+                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-poppins block">{bizCount.toLocaleString()}+</span>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-poppins">Businesses Assessed</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-4">
                 <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl shadow-sm"><ShieldCheck className="w-5 h-5" /></div>
                 <div className="space-y-0.5">
-                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-outfit block">{accuracy}%</span>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-outfit">Model Accuracy</p>
+                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-poppins block">{accuracy}%</span>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-poppins">Model Accuracy</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-amber-50 text-amber-600 rounded-xl shadow-sm"><Cpu className="w-5 h-5" /></div>
+                <div className="p-3 bg-orange-50 text-orange-500 rounded-xl shadow-sm"><Cpu className="w-5 h-5" /></div>
                 <div className="space-y-0.5">
-                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-outfit block">{modelCount}</span>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-outfit">AI Models</p>
+                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-poppins block">{modelCount}</span>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-poppins">AI Models</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-4">
                 <div className="p-3 bg-slate-50 text-slate-600 rounded-xl shadow-sm"><Radio className="w-5 h-5" /></div>
                 <div className="space-y-0.5">
-                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-outfit block">&lt; 2s</span>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-outfit">Inference Time</p>
+                  <span className="text-2xl font-bold tracking-tight text-slate-900 font-poppins block">&lt; 2s</span>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-poppins">Inference Time</p>
                 </div>
               </div>
             </div>
           </section>
 
           {/* FEATURES SECTION (Staggered Children) */}
-          <section className="max-w-[1400px] mx-auto px-12 py-24 space-y-16 relative z-10">
+          <section className="max-w-[1400px] mx-auto px-4 md:px-12 py-20 space-y-12 border-t border-slate-200/50 relative z-10">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 font-outfit">Features Overview</h2>
+              <h2 className="text-2xl font-black tracking-tight text-slate-900 font-poppins">Features Overview</h2>
               <p className="text-xs text-slate-500 font-inter">Complete modular services compiled inside the IDBI CreditSense console.</p>
             </div>
 
@@ -335,11 +276,11 @@ export default function Dashboard() {
                   className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium transition-all duration-300 flex flex-col justify-between h-52"
                 >
                   <div className="space-y-4 font-inter text-xs">
-                    <div className="w-9 h-9 rounded-lg bg-blue-50/50 flex items-center justify-center text-blue-600 shadow-sm"><feat.icon className="w-4 h-4" /></div>
-                    <h3 className="text-sm font-bold text-slate-800 font-outfit leading-none">{feat.title}</h3>
+                    <div className="w-9 h-9 rounded-lg bg-emerald-50/50 flex items-center justify-center text-[#00796B] shadow-sm"><feat.icon className="w-4 h-4" /></div>
+                    <h3 className="text-sm font-bold text-slate-800 font-poppins leading-none">{feat.title}</h3>
                     <p className="text-slate-550 leading-relaxed">{feat.desc}</p>
                   </div>
-                  <Link to="/assess" className="text-[10px] font-bold font-outfit tracking-wider text-blue-600 hover:text-blue-700 inline-flex items-center space-x-1 uppercase">
+                  <Link to="/assess" className="text-[10px] font-bold font-poppins tracking-wider text-[#00796B] hover:text-[#00695C] inline-flex items-center space-x-1 uppercase">
                     <span>Learn More</span>
                     <ChevronRight className="w-3 h-3" />
                   </Link>
@@ -349,9 +290,9 @@ export default function Dashboard() {
           </section>
 
           {/* PROCESS TIMELINE STEPPER (Staggered Children) */}
-          <section className="max-w-[1400px] mx-auto px-12 py-20 border-t border-slate-200/50 space-y-16 relative z-10">
+          <section className="max-w-[1400px] mx-auto px-4 md:px-12 py-20 border-t border-slate-200/50 space-y-12 relative z-10">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 font-outfit">Credit Assessment Pipeline</h2>
+              <h2 className="text-2xl font-black tracking-tight text-slate-900 font-poppins">Credit Assessment Pipeline</h2>
               <p className="text-xs text-slate-500 font-inter">End-to-end telemetry pipeline mapping raw ledger uploads to approved credit limits.</p>
             </div>
 
@@ -360,7 +301,7 @@ export default function Dashboard() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 font-inter text-xs"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 font-inter text-xs"
             >
               {timeline.map((step, idx) => (
                 <motion.div 
@@ -368,11 +309,11 @@ export default function Dashboard() {
                   variants={itemVariants}
                   className="bg-white border border-slate-200 rounded-xl p-5 shadow-premium text-center space-y-3 flex flex-col items-center justify-between relative hover:shadow-premium-hover transition-shadow duration-300"
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold font-outfit text-xs shadow-sm">
+                  <div className="w-8 h-8 rounded-full bg-[#E0F2F1] flex items-center justify-center text-[#00796B] font-bold font-poppins text-xs shadow-sm">
                     {step.step}
                   </div>
                   <div className="space-y-1 flex-1 pt-2">
-                    <h4 className="font-bold text-slate-800 font-outfit leading-none">{step.label}</h4>
+                    <h4 className="font-bold text-slate-800 font-poppins leading-none">{step.label}</h4>
                     <p className="text-[10px] text-slate-400 leading-normal">{step.desc}</p>
                   </div>
                 </motion.div>
@@ -381,9 +322,9 @@ export default function Dashboard() {
           </section>
 
           {/* PREVIEW MOCKUP */}
-          <section className="max-w-[1100px] mx-auto px-12 py-20 space-y-12 relative z-10">
+          <section className="max-w-[1100px] mx-auto px-4 md:px-12 py-20 space-y-12 border-t border-slate-200/50 relative z-10">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 font-outfit">Console Preview</h2>
+              <h2 className="text-2xl font-black tracking-tight text-slate-900 font-poppins">Console Preview</h2>
             </div>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -398,27 +339,27 @@ export default function Dashboard() {
                   <span className="w-2.5 h-2.5 rounded-full bg-slate-200" />
                   <span className="w-2.5 h-2.5 rounded-full bg-slate-200" />
                 </div>
-                <div className="w-72 bg-white border border-slate-200 rounded-md text-[9px] py-1 text-center font-semibold truncate text-slate-400">https://credit.idbi.creditsense.saas/console</div>
+                <div className="w-72 bg-white border border-slate-200 rounded-md text-[9px] py-1 text-center font-semibold truncate text-slate-400">https://creditsense.idbibank.co.in/console</div>
                 <div className="w-12" />
               </div>
-              <div className="p-8 bg-[#F8FAFC] space-y-6">
+              <div className="p-8 bg-[#F5F7FA] space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col items-center justify-center space-y-3 shadow-sm h-full">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Stability Gauge</span>
-                    <div className="w-16 h-16 rounded-full border-4 border-blue-600 flex items-center justify-center font-bold text-slate-800 text-base">87.2</div>
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Stability Gauge</span>
+                    <div className="w-16 h-16 rounded-full border-4 border-[#00796B] flex items-center justify-center font-bold text-slate-800 text-base">87.2</div>
                     <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Health Score</span>
                   </div>
                   <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm h-full text-xs">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Risk Index</span>
-                    <h3 className="text-emerald-600 font-extrabold text-base font-outfit mt-1">EXCELLENT</h3>
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Risk Index</span>
+                    <h3 className="text-emerald-600 font-extrabold text-base font-poppins mt-1">EXCELLENT</h3>
                   </div>
                   <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm h-full text-xs">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Credit status</span>
-                    <h3 className="text-emerald-600 font-extrabold text-base font-outfit mt-1">APPROVED</h3>
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Credit status</span>
+                    <h3 className="text-emerald-600 font-extrabold text-base font-poppins mt-1">APPROVED</h3>
                   </div>
                   <div className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-sm h-full text-xs">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">NPA Probability</span>
-                    <h3 className="text-slate-800 font-extrabold text-base font-outfit mt-1">2.14%</h3>
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">NPA Probability</span>
+                    <h3 className="text-slate-800 font-extrabold text-base font-poppins mt-1">2.14%</h3>
                   </div>
                 </div>
               </div>
@@ -426,11 +367,11 @@ export default function Dashboard() {
           </section>
 
           {/* FOOTER */}
-          <footer className="max-w-[1400px] mx-auto px-12 pt-20 pb-12 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 font-inter border-t border-slate-200/50 relative z-10">
-            <span>© IDBI CreditSense 2026. Internal Credit Underwriter Console.</span>
+          <footer className="max-w-[1400px] mx-auto px-12 pt-16 pb-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 font-inter border-t border-slate-200/50 relative z-10">
+            <span>© IDBI Bank Ltd. Powered by IDBI CreditSense. Secure • RBI Ready.</span>
             <div className="flex items-center space-x-6">
-              <a href="#" className="hover:text-slate-700">GitHub Repository</a>
-              <a href="#" className="hover:text-slate-700">API Documentation</a>
+              <a href="#" className="hover:text-slate-700">Internal Audit Docs</a>
+              <a href="#" className="hover:text-slate-700">Compliance Regulations</a>
             </div>
           </footer>
         </motion.div>
@@ -442,27 +383,27 @@ export default function Dashboard() {
           animate={{ opacity: 1, y: 0 }} 
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.3 }}
-          className="space-y-8 max-w-[1400px] mx-auto px-12 py-16"
+          className="space-y-8 max-w-[1400px] mx-auto px-4 md:px-12 py-8 md:py-16"
         >
           {/* Header Action with back button */}
-          <div className="flex items-center justify-between border-b border-slate-100 pb-6">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between border-b border-slate-100 pb-6">
             <div className="flex items-center space-x-4">
               <button 
                 onClick={() => setView("landing")}
-                className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-slate-800 transition-colors shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+                className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-slate-800 transition-colors shadow-sm hover:-translate-y-0.5 active:translate-y-0 flex-shrink-0"
                 title="Back to Landing Page"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
               <div>
-                <h1 className="text-2xl font-bold text-slate-800 font-outfit tracking-tight leading-none">Credit Console Dashboard</h1>
+                <h1 className="text-xl md:text-2xl font-bold text-slate-800 font-poppins tracking-tight leading-none">Credit Console Dashboard</h1>
                 <p className="text-xs text-slate-500 mt-2 font-inter">Adjust thresholds, download audit exports, or trigger assessment wizards.</p>
               </div>
             </div>
             
             <Link
               to="/assess"
-              className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs font-outfit tracking-wider uppercase px-4 py-2.5 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all"
+              className="flex items-center justify-center space-x-2 bg-[#00796B] hover:bg-[#00695C] text-white font-bold text-xs font-poppins tracking-wider uppercase px-4 py-3 h-12 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all w-full sm:w-auto flex-shrink-0"
             >
               <UserCheck className="w-4 h-4" />
               <span>Launch Underwriter</span>
@@ -474,19 +415,19 @@ export default function Dashboard() {
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="grid grid-cols-2 lg:grid-cols-6 gap-6 font-inter text-xs text-slate-500"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 font-inter text-xs text-slate-500"
           >
             {/* KPI 1: Portfolio Size - White, soft shadow, blue database icon */}
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Portfolio Size</span>
-                <Database className="w-4 h-4 text-blue-500" />
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Portfolio Size</span>
+                <Database className="w-4 h-4 text-[#00796B]" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-outfit leading-none">25,000+</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-poppins leading-none">25,000+</h2>
               <span className="text-[9px] text-slate-400">Total active MSMEs</span>
             </motion.div>
 
@@ -494,13 +435,13 @@ export default function Dashboard() {
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border-t-4 border-t-blue-600 border-x border-b border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border-t-4 border-t-[#00796B] border-x border-b border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Mean Health</span>
-                <Activity className="w-4 h-4 text-blue-600" />
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Mean Health</span>
+                <Activity className="w-4 h-4 text-[#00796B]" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-outfit leading-none">67.4 / 100</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-poppins leading-none">67.4 / 100</h2>
               <span className="text-[9px] text-slate-400">Ensemble score avg</span>
             </motion.div>
 
@@ -508,27 +449,27 @@ export default function Dashboard() {
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border-l-4 border-l-emerald-600 border-y border-r border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border-l-4 border-l-emerald-600 border-y border-r border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Approval Rate</span>
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Approval Rate</span>
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-outfit leading-none">84.2%</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-poppins leading-none">84.2%</h2>
               <span className="text-[9px] text-slate-400">Priority sectors limits</span>
             </motion.div>
 
-            {/* KPI 4: Average Default Probability - Orange/amber right border, elevated */}
+            {/* KPI 4: Average Default Probability - Orange/accent right border, elevated */}
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border-r-4 border-r-amber-500 border-y border-l border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border-r-4 border-r-[#F26C21] border-y border-l border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">NPA Default</span>
-                <ShieldAlert className="w-4 h-4 text-amber-500" />
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">NPA Default</span>
+                <ShieldAlert className="w-4 h-4 text-[#F26C21]" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-outfit mt-2">14.8%</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-poppins mt-2">14.8%</h2>
               <span className="text-[9px] text-slate-400">12-mo default probability</span>
             </motion.div>
 
@@ -536,13 +477,13 @@ export default function Dashboard() {
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border-t-4 border-t-rose-500 border-x border-b border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border-t-4 border-t-rose-500 border-x border-b border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">High Risk</span>
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">High Risk</span>
                 <ShieldAlert className="w-4 h-4 text-rose-500" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-rose-600 font-outfit leading-none">2,140</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-rose-600 font-poppins leading-none">2,140</h2>
               <span className="text-[9px] text-slate-400">Accounts flagged</span>
             </motion.div>
 
@@ -550,27 +491,27 @@ export default function Dashboard() {
             <motion.div 
               variants={itemVariants}
               whileHover={{ y: -4, shadow: "0 10px 25px -10px rgba(0,0,0,0.08)" }}
-              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-350 flex flex-col justify-between h-36"
+              className="bg-white border border-slate-200 rounded-2xl p-5 shadow-premium transition-all duration-355 flex flex-col justify-between h-36"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit">Active Models</span>
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins">Active Models</span>
                 <Cpu className="w-4 h-4 text-slate-400" />
               </div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-outfit leading-none">3 Core</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-800 font-poppins leading-none">3 Core</h2>
               <span className="text-[9px] text-slate-400">LGBM + XGBoost + CatBoost</span>
             </motion.div>
           </motion.div>
 
           {/* LOWER GRID SECTION */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <div className="xl:col-span-2 space-y-8">
               <Card title="Recent Credit Underwriting Audits">
                 <TableComponent 
                   headers={['Business ID', 'Legal Name', 'Sector', 'Score', 'Credit Risk Rating', 'Approved Limit']}
                   data={recentAssessments}
                   renderRow={(row, idx) => (
                     <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-                      <td className="py-3.5 pl-2 font-semibold text-slate-800 font-outfit">{row.id}</td>
+                      <td className="py-3.5 pl-2 font-semibold text-slate-800 font-poppins">{row.id}</td>
                       <td className="py-3.5 font-medium text-slate-700">{row.name}</td>
                       <td className="py-3.5 text-slate-500">{row.industry}</td>
                       <td className="py-3.5 font-semibold text-slate-800">{row.score.toFixed(1)}</td>
@@ -592,7 +533,7 @@ export default function Dashboard() {
                           <span className="font-semibold text-slate-700">{pred.id}</span>
                           <span className="text-slate-450">{pred.time}</span>
                         </div>
-                        <span className={`font-bold font-outfit text-[10px] px-2 py-0.5 rounded ${
+                        <span className={`font-bold font-poppins text-[10px] px-2 py-0.5 rounded ${
                           pred.status === 'APPROVED' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'
                         }`}>
                           {pred.status} (Score: {pred.score})
@@ -603,22 +544,22 @@ export default function Dashboard() {
                 </Card>
 
                 <Card title="Quick Console Actions">
-                  <div className="grid grid-cols-1 gap-3 font-outfit font-bold uppercase tracking-wider text-[10px]">
+                  <div className="grid grid-cols-1 gap-3 font-poppins font-bold uppercase tracking-wider text-[10px]">
                     <Link 
                       to="/assess"
-                      className="bg-blue-600 hover:bg-blue-700 text-white text-center py-2.5 rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
+                      className="bg-[#00796B] hover:bg-[#00695C] text-white text-center py-3 h-12 flex items-center justify-center rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
                     >
                       Run Single Underwrite
                     </Link>
                     <Link 
                       to="/batch"
-                      className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-center py-2.5 rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
+                      className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-center py-3 h-12 flex items-center justify-center rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
                     >
                       Batch CSV Upload
                     </Link>
                     <Link 
                       to="/analytics"
-                      className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-center py-2.5 rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
+                      className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-center py-3 h-12 flex items-center justify-center rounded-lg hover:-translate-y-0.5 active:translate-y-0 transition-all shadow-sm"
                     >
                       Portfolio Analytics
                     </Link>
@@ -639,7 +580,7 @@ export default function Dashboard() {
                       </div>
                       <button 
                         onClick={() => navigate('/assess')}
-                        className="text-blue-600 hover:text-blue-700 font-bold font-outfit flex items-center space-x-1 uppercase text-[9px] tracking-wider"
+                        className="text-[#00796B] hover:text-[#00695C] font-bold font-poppins flex items-center space-x-1 uppercase text-[9px] tracking-wider"
                       >
                         <span>Download</span>
                         <ExternalLink className="w-3 h-3" />

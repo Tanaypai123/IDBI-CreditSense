@@ -117,14 +117,14 @@ export default function Batch() {
       }`}
       onClick={() => handleInspect(row.Business_ID)}
     >
-      <td className="py-3.5 pl-2 font-semibold text-slate-800 font-outfit">{row.Business_ID}</td>
+      <td className="py-3.5 pl-2 font-semibold text-slate-800 font-poppins">{row.Business_ID}</td>
       <td className="py-3.5 font-semibold text-slate-700">{row.score.toFixed(1)}</td>
       <td className="py-3.5">
         <StatusBadge status={row.risk_category} />
       </td>
       <td className="py-3.5 text-slate-500">{(row.default_probability * 100).toFixed(1)}%</td>
       <td className="py-3.5 font-semibold text-slate-800">{row.max_loan.toLocaleString()} INR</td>
-      <td className="py-3.5 text-right pr-2 text-blue-600 font-bold font-outfit group-hover:translate-x-1 transition-transform flex items-center justify-end space-x-1">
+      <td className="py-3.5 text-right pr-2 text-blue-600 font-bold font-poppins group-hover:translate-x-1 transition-transform flex items-center justify-end space-x-1">
         <Eye className="w-3.5 h-3.5" />
         <span>Inspect</span>
       </td>
@@ -201,11 +201,11 @@ export default function Batch() {
           </div>
 
           {file && (
-            <div className="flex justify-end">
+            <div className="flex justify-end pt-2">
               <button
                 onClick={handleUpload}
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs font-outfit tracking-wider uppercase px-6 py-3 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center space-x-2"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs font-poppins tracking-wider uppercase px-6 py-3 h-12 w-full sm:w-auto justify-center rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center space-x-2"
               >
                 {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
                 <span>{loading ? 'Analyzing Register...' : 'Run Batch Assessment'}</span>
@@ -220,7 +220,7 @@ export default function Batch() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium h-fit"
         >
-          <h3 className="text-xs font-bold tracking-wider text-slate-455 uppercase border-b border-slate-100 pb-3 mb-4 font-outfit flex items-center space-x-1.5">
+          <h3 className="text-xs font-bold tracking-wider text-slate-455 uppercase border-b border-slate-100 pb-3 mb-4 font-poppins flex items-center space-x-1.5">
             <FileSpreadsheet className="w-4 h-4 text-slate-500" />
             <span>Ledger Schema Template</span>
           </h3>
@@ -230,7 +230,7 @@ export default function Batch() {
           <a
             href="/msme_batch_template.csv"
             download
-            className="flex items-center justify-center space-x-2 text-xs font-bold text-slate-655 hover:text-slate-800 bg-slate-50 hover:bg-slate-100 py-3 rounded-lg border border-slate-200 transition-all font-outfit uppercase tracking-wider"
+            className="flex items-center justify-center space-x-2 text-xs font-bold text-slate-655 hover:text-slate-800 bg-slate-50 hover:bg-slate-100 py-3 rounded-lg border border-slate-200 transition-all font-poppins uppercase tracking-wider"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Template</span>
@@ -242,8 +242,8 @@ export default function Batch() {
 
       {/* BATCH ASSESSMENT RESULTS REGISTRY */}
       {!loading && results.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          <div className="xl:col-span-2">
             <Card title="Batch Underwriting Registry">
               <TableComponent 
                 headers={tableHeaders}
@@ -259,7 +259,7 @@ export default function Batch() {
                 <ScoreGauge score={selectedBizDetail.score} title={`Scorecard: ${selectedBizDetail.Business_ID}`} />
                 
                 <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium space-y-4 text-xs font-inter">
-                  <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-outfit">
+                  <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-poppins">
                     🔍 Underwriting Score Details
                   </h3>
                   <div className="flex justify-between pb-2 border-b border-slate-50">

@@ -21,7 +21,7 @@ export default class ErrorBoundary extends Component {
         <div className="p-8 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl space-y-4 font-inter text-xs max-w-lg mx-auto mt-12 shadow-sm">
           <div className="flex items-center space-x-2">
             <AlertCircle className="w-5 h-5 text-rose-600" />
-            <h3 className="font-bold text-sm text-rose-800 font-outfit">Something went wrong.</h3>
+            <h3 className="font-bold text-sm text-rose-800 font-poppins">Something went wrong.</h3>
           </div>
           <p className="leading-relaxed">A rendering issue occurred while building the screen components. Please refresh the page or adjust settings.</p>
           {this.state.error && (

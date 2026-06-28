@@ -260,7 +260,7 @@ export default function Assessor() {
     const isCompleted = step > stepNum;
     const isActive = step === stepNum;
     return (
-      <span className={`flex items-center space-x-1.5 ${
+      <span className={`flex items-center space-x-1.5 flex-shrink-0 whitespace-nowrap ${
         isActive ? 'text-blue-600 border-b-2 border-blue-600 pb-1 font-bold' : isCompleted ? 'text-emerald-600 font-bold' : 'text-slate-400 font-medium'
       }`}>
         {isCompleted && <CheckCircle className="w-3.5 h-3.5" />}
@@ -295,7 +295,7 @@ export default function Assessor() {
             exit={{ opacity: 0, x: -15 }}
             className="space-y-6"
           >
-            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-8 py-3.5 shadow-premium text-xs font-outfit">
+            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-4 md:px-8 py-3.5 shadow-premium text-xs font-poppins overflow-x-auto whitespace-nowrap gap-4 md:gap-0 select-none scrollbar-hide">
               {renderStepIndicator(1, "1. Profile")}
               {renderStepIndicator(2, "2. Financials")}
               {renderStepIndicator(3, "3. Transactions")}
@@ -304,7 +304,7 @@ export default function Assessor() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-premium space-y-6">
-              <h3 className="text-xs font-bold text-slate-400 font-outfit uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
+              <h3 className="text-xs font-bold text-slate-400 font-poppins uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
                 <Building2 className="w-4 h-4 text-blue-600" />
                 <span>Section 1: MSME Corporate Demographics</span>
               </h3>
@@ -337,7 +337,7 @@ export default function Assessor() {
                     </select>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">State / Location</label>
                       <select
@@ -392,7 +392,7 @@ export default function Assessor() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <div className="flex justify-between mb-1.5 font-bold text-slate-700">
                         <span>Digital Score</span>
@@ -433,7 +433,7 @@ export default function Assessor() {
             <div className="flex justify-end pt-4">
               <button
                 onClick={nextStep}
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs font-outfit tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <span>Financial Performance Step</span>
                 <ArrowRight className="w-4 h-4" />
@@ -451,7 +451,7 @@ export default function Assessor() {
             exit={{ opacity: 0, x: -15 }}
             className="space-y-6"
           >
-            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-8 py-3.5 shadow-premium text-xs font-outfit">
+            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-4 md:px-8 py-3.5 shadow-premium text-xs font-poppins overflow-x-auto whitespace-nowrap gap-4 md:gap-0 select-none scrollbar-hide">
               {renderStepIndicator(1, "1. Profile")}
               {renderStepIndicator(2, "2. Financials")}
               {renderStepIndicator(3, "3. Transactions")}
@@ -460,7 +460,7 @@ export default function Assessor() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-premium space-y-6">
-              <h3 className="text-xs font-bold text-slate-400 font-outfit uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
+              <h3 className="text-xs font-bold text-slate-400 font-poppins uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
                 <Layers className="w-4 h-4 text-blue-600" />
                 <span>Section 2: Operating Margins & Liquid Assets</span>
               </h3>
@@ -500,7 +500,7 @@ export default function Assessor() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">Revenue Volatility (Std)</label>
                       <input
@@ -563,17 +563,17 @@ export default function Assessor() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-4">
               <button
                 onClick={prevStep}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-2.5 rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Previous Step</span>
               </button>
               <button
                 onClick={nextStep}
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs font-outfit tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <span>Compliance & GST Step</span>
                 <ArrowRight className="w-4 h-4" />
@@ -591,7 +591,7 @@ export default function Assessor() {
             exit={{ opacity: 0, x: -15 }}
             className="space-y-6"
           >
-            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-8 py-3.5 shadow-premium text-xs font-outfit">
+            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-4 md:px-8 py-3.5 shadow-premium text-xs font-poppins overflow-x-auto whitespace-nowrap gap-4 md:gap-0 select-none scrollbar-hide">
               {renderStepIndicator(1, "1. Profile")}
               {renderStepIndicator(2, "2. Financials")}
               {renderStepIndicator(3, "3. Transactions")}
@@ -600,7 +600,7 @@ export default function Assessor() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-premium space-y-6">
-              <h3 className="text-xs font-bold text-slate-400 font-outfit uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
+              <h3 className="text-xs font-bold text-slate-400 font-poppins uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
                 <Database className="w-4 h-4 text-blue-600" />
                 <span>Section 3: Statutory GST & UPI Telemetry</span>
               </h3>
@@ -622,7 +622,7 @@ export default function Assessor() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">GST On-Time filing</label>
                       <input
@@ -685,17 +685,17 @@ export default function Assessor() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-4">
               <button
                 onClick={prevStep}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-2.5 rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Previous Step</span>
               </button>
               <button
                 onClick={nextStep}
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs font-outfit tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <span>Liabilities & HR Step</span>
                 <ArrowRight className="w-4 h-4" />
@@ -713,7 +713,7 @@ export default function Assessor() {
             exit={{ opacity: 0, x: -15 }}
             className="space-y-6"
           >
-            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-8 py-3.5 shadow-premium text-xs font-outfit">
+            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-4 md:px-8 py-3.5 shadow-premium text-xs font-poppins overflow-x-auto whitespace-nowrap gap-4 md:gap-0 select-none scrollbar-hide">
               {renderStepIndicator(1, "1. Profile")}
               {renderStepIndicator(2, "2. Financials")}
               {renderStepIndicator(3, "3. Transactions")}
@@ -722,15 +722,15 @@ export default function Assessor() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-premium space-y-6">
-              <h3 className="text-xs font-bold text-slate-400 font-outfit uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
+              <h3 className="text-xs font-bold text-slate-400 font-poppins uppercase tracking-wider border-b border-slate-100 pb-2 flex items-center space-x-1.5">
                 <ShieldCheck className="w-4 h-4 text-blue-600" />
                 <span>Section 4: Liabilities & Staff Registry</span>
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-inter text-xs">
                 <div className="space-y-4">
-                  <h4 className="font-bold text-slate-800 font-outfit">Active Debts & EMI Performance</h4>
+                  <h4 className="font-bold text-slate-800 font-poppins">Active Debts & EMI Performance</h4>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">Active Loan Count</label>
                       <input
@@ -790,9 +790,9 @@ export default function Assessor() {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-bold text-slate-800 font-outfit">Employment Register</h4>
+                  <h4 className="font-bold text-slate-800 font-poppins">Employment Register</h4>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-slate-700 font-bold mb-1">Staff Headcount</label>
                       <input
@@ -855,17 +855,17 @@ export default function Assessor() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-4">
               <button
                 onClick={prevStep}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-2.5 rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Previous Step</span>
               </button>
               <button
                 onClick={nextStep}
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs font-outfit tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <span>Review Inputs Step</span>
                 <ArrowRight className="w-4 h-4" />
@@ -883,7 +883,7 @@ export default function Assessor() {
             exit={{ opacity: 0, x: -15 }}
             className="space-y-6"
           >
-            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-8 py-3.5 shadow-premium text-xs font-outfit">
+            <div className="flex justify-between items-center bg-white border border-slate-200 rounded-xl px-4 md:px-8 py-3.5 shadow-premium text-xs font-poppins overflow-x-auto whitespace-nowrap gap-4 md:gap-0 select-none scrollbar-hide">
               {renderStepIndicator(1, "1. Profile")}
               {renderStepIndicator(2, "2. Financials")}
               {renderStepIndicator(3, "3. Transactions")}
@@ -892,7 +892,7 @@ export default function Assessor() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-premium space-y-6">
-              <h3 className="text-xs font-bold text-slate-800 font-outfit uppercase tracking-wider border-b border-slate-100 pb-3 mb-4 flex items-center space-x-1.5">
+              <h3 className="text-xs font-bold text-slate-800 font-poppins uppercase tracking-wider border-b border-slate-100 pb-3 mb-4 flex items-center space-x-1.5">
                 <CheckCircle className="w-4 h-4 text-blue-600" />
                 <span>Section 5: Final Review Checklist</span>
               </h3>
@@ -900,7 +900,7 @@ export default function Assessor() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-inter text-xs text-slate-600">
                 <div className="space-y-4">
                   <div>
-                    <span className="font-bold text-slate-800 font-outfit block mb-2">🏢 Business & Demographics</span>
+                    <span className="font-bold text-slate-800 font-poppins block mb-2">🏢 Business & Demographics</span>
                     <ul className="space-y-1">
                       <li><b>Legal Entity:</b> {form.biz_name}</li>
                       <li><b>Industry Sector:</b> {form.Industry}</li>
@@ -912,7 +912,7 @@ export default function Assessor() {
                   </div>
 
                   <div>
-                    <span className="font-bold text-slate-800 font-outfit block mb-2">📊 Financial Performance</span>
+                    <span className="font-bold text-slate-800 font-poppins block mb-2">📊 Financial Performance</span>
                     <ul className="space-y-1">
                       <li><b>Operating Margin:</b> {(form.Profit_Margin_Mean * 100).toFixed(0)}%</li>
                       <li><b>Sales Growth Rate:</b> {(form.Revenue_Growth_MoM_Mean * 100).toFixed(0)}%</li>
@@ -925,7 +925,7 @@ export default function Assessor() {
 
                 <div className="space-y-4">
                   <div>
-                    <span className="font-bold text-slate-800 font-outfit block mb-2">🧾 Compliance & Transactions</span>
+                    <span className="font-bold text-slate-800 font-poppins block mb-2">🧾 Compliance & Transactions</span>
                     <ul className="space-y-1">
                       <li><b>GST Compliance Score:</b> {form.GST_Compliance_Mean}</li>
                       <li><b>GST On-Time Filing:</b> {(form.GST_OnTime_Rate * 100).toFixed(0)}%</li>
@@ -935,7 +935,7 @@ export default function Assessor() {
                   </div>
 
                   <div>
-                    <span className="font-bold text-slate-800 font-outfit block mb-2">💳 Debt Liabilities & Human Resources</span>
+                    <span className="font-bold text-slate-800 font-poppins block mb-2">💳 Debt Liabilities & Human Resources</span>
                     <ul className="space-y-1">
                       <li><b>Active Loans:</b> {form.Active_Loan_Count} Accounts</li>
                       <li><b>EMI Delay Count:</b> {form.EMI_Delay_Count} Misses</li>
@@ -948,17 +948,17 @@ export default function Assessor() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-4">
               <button
                 onClick={prevStep}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-2.5 rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Previous Step</span>
               </button>
               <button
                 onClick={handleTriggerAI}
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-lg text-xs font-outfit tracking-wider uppercase shadow hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-poppins tracking-wider uppercase shadow hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 <span>🚀 Analyze Business</span>
               </button>
@@ -977,7 +977,7 @@ export default function Assessor() {
           >
             <div className="flex flex-col items-center justify-center space-y-4">
               <Cpu className="w-12 h-12 text-blue-600 animate-spin" />
-              <h2 className="text-xl font-bold tracking-tight text-slate-800 font-outfit">Ensembles Underwriting Calculation</h2>
+              <h2 className="text-xl font-bold tracking-tight text-slate-800 font-poppins">Ensembles Underwriting Calculation</h2>
               <p className="text-xs text-slate-400 max-w-sm">Calculating risk matrices, compliance delays, and UPI transaction thresholds...</p>
             </div>
 
@@ -985,11 +985,11 @@ export default function Assessor() {
               {aiStagesList.map((stage, idx) => (
                 <div key={idx} className="flex items-center space-x-3">
                   {aiStage > idx ? (
-                    <span className="text-emerald-600 font-bold font-outfit">✓</span>
+                    <span className="text-emerald-600 font-bold font-poppins">✓</span>
                   ) : aiStage === idx ? (
-                    <span className="text-blue-600 animate-pulse font-bold font-outfit">⏳</span>
+                    <span className="text-blue-600 animate-pulse font-bold font-poppins">⏳</span>
                   ) : (
-                    <span className="text-slate-300 font-bold font-outfit">○</span>
+                    <span className="text-slate-300 font-bold font-poppins">○</span>
                   )}
                   <span className={`font-semibold ${aiStage >= idx ? 'text-slate-700' : 'text-slate-400'}`}>
                     {stage}
@@ -1019,10 +1019,10 @@ export default function Assessor() {
             {/* HERO BAR */}
             <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-premium flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-3 flex-1 text-center md:text-left">
-                <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold font-outfit uppercase tracking-wider border ${getHealthStatusColor()}`}>
+                <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold font-poppins uppercase tracking-wider border ${getHealthStatusColor()}`}>
                   {results.risk_category} Rating
                 </span>
-                <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-outfit leading-none">
+                <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-poppins leading-none">
                   {form.biz_name}
                 </h1>
                 <p className="text-xs text-slate-500 font-inter font-medium">
@@ -1039,30 +1039,30 @@ export default function Assessor() {
             {/* EXECUTIVE SUMMARY WIDGET */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between min-h-32 hover:shadow-premium-hover transition-all duration-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Credit Risk Rating</span>
-                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-outfit mt-2">{results.risk_category}</h2>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-poppins">Credit Risk Rating</span>
+                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-poppins mt-2">{results.risk_category}</h2>
                 <p className="text-[9px] text-slate-400 mt-1.5 leading-normal font-inter">
                   Credit Risk Rating is calculated using repayment history, leverage, liquidity, compliance, and financial health.
                 </p>
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between h-32 hover:shadow-premium-hover transition-all duration-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Credit Eligibility</span>
-                <h2 className={`text-xl font-bold tracking-tight font-outfit mt-2 ${results.eligible ? 'text-emerald-600' : 'text-rose-600'}`}>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-poppins">Credit Eligibility</span>
+                <h2 className={`text-xl font-bold tracking-tight font-poppins mt-2 ${results.eligible ? 'text-emerald-600' : 'text-rose-600'}`}>
                   {results.eligible ? 'APPROVED' : 'LOCKED'}
                 </h2>
                 <p className="text-[10px] text-slate-400 mt-1 leading-none font-inter">Ensemble underwriting decision</p>
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between h-32 hover:shadow-premium-hover transition-all duration-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Default Probability</span>
-                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-outfit mt-2">{(results.default_probability * 100).toFixed(2)}%</h2>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-poppins">Default Probability</span>
+                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-poppins mt-2">{(results.default_probability * 100).toFixed(2)}%</h2>
                 <p className="text-[10px] text-slate-400 mt-1 leading-none font-inter">NPA transition likelihood</p>
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col justify-between h-32 hover:shadow-premium-hover transition-all duration-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit">Recommended Credit Limit</span>
-                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-outfit mt-2">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-poppins">Recommended Credit Limit</span>
+                <h2 className="text-xl font-bold tracking-tight text-slate-800 font-poppins mt-2">
                   {results.eligible ? `${results.max_loan.toLocaleString()} INR` : '0 INR'}
                 </h2>
                 <p className="text-[10px] text-slate-400 mt-1 leading-none font-inter">Working capital overdraft</p>
@@ -1071,7 +1071,7 @@ export default function Assessor() {
 
             {/* AI RECOMMENDATION */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-premium space-y-3">
-              <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-outfit">
+              <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-poppins">
                 💡 Executive AI Recommendation
               </h3>
               <p 
@@ -1083,7 +1083,7 @@ export default function Assessor() {
             {/* DRIVERS CONTRIBUTIONS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium space-y-4">
-                <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-outfit">
+                <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-poppins">
                   🟢 Top Positive Accelerating Drivers
                 </h3>
                 <div className="space-y-3.5 font-inter text-xs text-slate-600">
@@ -1097,7 +1097,7 @@ export default function Assessor() {
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium space-y-4">
-                <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-outfit">
+                <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-poppins">
                   🔴 Top Negative Drag Drivers
                 </h3>
                 <div className="space-y-3.5 font-inter text-xs text-slate-600">
@@ -1141,61 +1141,61 @@ export default function Assessor() {
 
             {/* AUDIT BUSINESS DETAILS SUMMARY */}
             <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium space-y-4">
-              <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-outfit">
+              <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase border-b border-slate-100 pb-3 font-poppins">
                 🏢 Business Audit Executive Summary
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6 font-inter text-xs text-slate-655">
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">Industry Sector</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">Industry Sector</span>
                   <span className="font-bold text-slate-700">{form.Industry}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">Registered State</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">Registered State</span>
                   <span className="font-bold text-slate-700">{form.State}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">Annual Turnover</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">Annual Turnover</span>
                   <span className="font-bold text-slate-700">{form.Annual_Turnover.toLocaleString()} INR</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">Active Headcount</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">Active Headcount</span>
                   <span className="font-bold text-slate-700">{form.Current_Employees} Employees</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">Digital Adoption Score</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">Digital Adoption Score</span>
                   <span className="font-bold text-slate-700">{(form.Digital_Adoption_Score * 100).toFixed(0)}%</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-outfit">GST Compliance Average</span>
+                  <span className="text-slate-400 block text-[9px] uppercase tracking-wider font-poppins">GST Compliance Average</span>
                   <span className="font-bold text-slate-700">{form.GST_Compliance_Mean}%</span>
                 </div>
               </div>
             </div>
 
             {/* DOWNLOAD ACTIONS */}
-            <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-wrap gap-4 items-center justify-between">
-              <div className="space-y-1">
-                <h4 className="text-xs font-bold text-slate-800 font-outfit leading-none">Export Regulatory Documentation</h4>
+            <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-premium flex flex-col md:flex-row gap-6 items-center justify-between">
+              <div className="space-y-1 text-center md:text-left">
+                <h4 className="text-xs font-bold text-slate-800 font-poppins leading-none">Export Regulatory Documentation</h4>
                 <p className="text-[10px] text-slate-400 font-inter">Download credit assessment audits, parameters list, or print pages.</p>
               </div>
-              <div className="flex items-center space-x-3 text-xs font-outfit font-bold uppercase tracking-wide">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto text-xs font-poppins font-bold uppercase tracking-wide">
                 <button
                   onClick={handleDownloadReport}
-                  className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                  className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 h-12 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform w-full sm:w-auto"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download PDF Report</span>
                 </button>
                 <button
                   onClick={handleExportJSON}
-                  className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                  className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-4 py-3 h-12 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform w-full sm:w-auto"
                 >
                   <Code className="w-4 h-4 text-slate-505" />
                   <span>Export JSON</span>
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-4 py-2.5 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                  className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-4 py-3 h-12 rounded-lg shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform w-full sm:w-auto"
                 >
                   <Printer className="w-4 h-4 text-slate-505" />
                   <span>Print Report</span>
@@ -1206,7 +1206,7 @@ export default function Assessor() {
             <div className="flex justify-start pt-4">
               <button
                 onClick={handleReset}
-                className="flex items-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-2.5 rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+                className="flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold border border-slate-200 px-4 py-3 h-12 w-full sm:w-auto rounded-lg text-xs font-outfit shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
               >
                 ⬅ Back to Underwriting Wizard
               </button>

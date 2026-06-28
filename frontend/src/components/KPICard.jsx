@@ -9,10 +9,10 @@ export default function KPICard({ label, value, subtext, icon: Icon, color = "te
       className="bg-white border border-slate-200/80 rounded-xl p-6 shadow-premium transition-shadow duration-300 flex items-center justify-between cursor-pointer"
     >
       <div className="space-y-2">
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-outfit block">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none font-poppins block">
           {label}
         </span>
-        <h2 className="text-2xl font-bold text-slate-800 tracking-tight font-outfit leading-none">
+        <h2 className="text-2xl font-bold text-slate-800 tracking-tight font-poppins leading-none">
           {value}
         </h2>
         {subtext && (

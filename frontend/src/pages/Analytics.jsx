@@ -60,11 +60,11 @@ export default function Analytics() {
   ];
 
   const riskDistribution = [
-    { name: 'Excellent', value: 8400, color: '#16A34A' },
-    { name: 'Low Risk', value: 9200, color: '#2563EB' },
-    { name: 'Medium Risk', value: 5260, color: '#F59E0B' },
-    { name: 'High Risk', value: 1680, color: '#EA580C' },
-    { name: 'Critical Risk', value: 460, color: '#DC2626' }
+    { name: 'Excellent', value: 8400, color: '#00796B' }, // IDBI Green
+    { name: 'Low Risk', value: 9200, color: '#80CBC4' },   // Light Green-Teal
+    { name: 'Medium Risk', value: 5260, color: '#F26C21' }, // IDBI Orange
+    { name: 'High Risk', value: 1680, color: '#E05B13' },   // Dark Orange
+    { name: 'Critical Risk', value: 460, color: '#DC2626' } // Danger Red
   ];
 
   const industryDistribution = [
@@ -116,7 +116,7 @@ export default function Analytics() {
     <button
       onClick={fetchGlobalAnalytics}
       disabled={loading}
-      className="flex items-center space-x-1.5 bg-white hover:bg-slate-50 text-slate-650 font-semibold border border-slate-200 px-3.5 py-2 rounded-lg text-xs font-outfit tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+      className="flex items-center space-x-1.5 bg-white hover:bg-slate-50 text-slate-650 font-semibold border border-slate-200 px-3.5 py-2 rounded-lg text-xs font-poppins tracking-wide shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-transform"
     >
       <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
       <span>Sync Data</span>
@@ -144,7 +144,7 @@ export default function Analytics() {
       >
         <div className="flex items-center space-x-2">
           <Filter className="w-4 h-4 text-slate-400" />
-          <span className="font-bold text-slate-800 font-outfit uppercase tracking-wider text-[10px]">Filter Portfolio:</span>
+          <span className="font-bold text-slate-800 font-poppins uppercase tracking-wider text-[10px]">Filter Portfolio:</span>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -194,41 +194,41 @@ export default function Analytics() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-2 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
         >
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">Total MSMEs</span>
-            <span className="text-xl font-bold tracking-tight text-slate-800 font-outfit block">25,000+</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">Total MSMEs</span>
+            <span className="text-xl font-bold tracking-tight text-slate-800 font-poppins block">25,000+</span>
             <span className="text-[9px] text-slate-400 font-inter">Simulated database</span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">Average Health</span>
-            <span className="text-xl font-bold tracking-tight text-slate-800 font-outfit block">67.4 / 100</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">Average Health</span>
+            <span className="text-xl font-bold tracking-tight text-slate-800 font-poppins block">67.4 / 100</span>
             <span className="text-[9px] text-slate-400 font-inter">Ensemble weighted</span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">Default Probability</span>
-            <span className="text-xl font-bold tracking-tight text-slate-800 font-outfit block">14.8%</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">Default Probability</span>
+            <span className="text-xl font-bold tracking-tight text-slate-800 font-poppins block">14.8%</span>
             <span className="text-[9px] text-slate-400 font-inter">Aggregate NPA risk</span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">Approval Rate</span>
-            <span className="text-xl font-bold tracking-tight text-slate-800 font-outfit block">84.2%</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">Approval Rate</span>
+            <span className="text-xl font-bold tracking-tight text-slate-800 font-poppins block">84.2%</span>
             <span className="text-[9px] text-slate-400 font-inter">Priority lending tier</span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">High Risk MSMEs</span>
-            <span className="text-xl font-bold tracking-tight text-slate-800 font-outfit block">2,140</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">High Risk MSMEs</span>
+            <span className="text-xl font-bold tracking-tight text-slate-800 font-poppins block">2,140</span>
             <span className="text-[9px] text-rose-500 font-bold font-inter">SMA-1 & SMA-2 limits</span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-white border border-slate-200 rounded-xl p-4 shadow-premium space-y-1 hover:shadow-premium-hover transition-shadow duration-300">
-            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-outfit block">Credit Exposure</span>
-            <span className="text-xl font-bold tracking-tight text-slate-850 font-outfit block truncate">78.5B INR</span>
+            <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest font-poppins block">Credit Exposure</span>
+            <span className="text-xl font-bold tracking-tight text-slate-850 font-poppins block truncate">78.5B INR</span>
             <span className="text-[9px] text-slate-400 font-inter">Total pre-approved</span>
           </motion.div>
         </motion.div>
@@ -236,7 +236,7 @@ export default function Analytics() {
 
       {/* PORTFOLIO OVERVIEW */}
       {!loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-8">
             <ChartCard title="📊 Financial Health Score Distribution" height="h-56">
               <ResponsiveContainer width="100%" height="100%">
@@ -245,7 +245,7 @@ export default function Analytics() {
                   <XAxis dataKey="range" stroke="#94A3B8" fontSize={9} />
                   <YAxis stroke="#94A3B8" fontSize={9} />
                   <Tooltip />
-                  <Bar dataKey="count" fill="#2563EB" radius={[4, 4, 0, 0]} isAnimationActive={true} />
+                  <Bar dataKey="count" fill="#00796B" radius={[4, 4, 0, 0]} isAnimationActive={true} />
                 </BarChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -292,7 +292,7 @@ export default function Analytics() {
                   <XAxis type="number" stroke="#94A3B8" fontSize={9} />
                   <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={9} width={90} />
                   <Tooltip />
-                  <Bar dataKey="count" fill="#475569" radius={[0, 4, 4, 0]} isAnimationActive={true} />
+                  <Bar dataKey="count" fill="#F26C21" radius={[0, 4, 4, 0]} isAnimationActive={true} />
                 </BarChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -304,7 +304,7 @@ export default function Analytics() {
                   <XAxis dataKey="state" stroke="#94A3B8" fontSize={9} />
                   <YAxis stroke="#94A3B8" fontSize={9} />
                   <Tooltip />
-                  <Bar dataKey="count" fill="#2563EB" radius={[4, 4, 0, 0]} isAnimationActive={true} />
+                  <Bar dataKey="count" fill="#00796B" radius={[4, 4, 0, 0]} isAnimationActive={true} />
                 </BarChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -314,15 +314,15 @@ export default function Analytics() {
 
       {/* RISK INSIGHTS */}
       {!loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="md:col-span-2 xl:col-span-2">
             <Card title="⚠️ Highest-Risk Portfolio Accounts">
               <TableComponent 
                 headers={['Account ID', 'Sector', 'Health Score', 'Default Prob', 'Risk Badge']}
                 data={highestRiskAccounts}
                 renderRow={(row, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-800 font-outfit">{row.id}</td>
+                    <td className="py-3 pl-2 font-bold text-slate-800 font-poppins">{row.id}</td>
                     <td className="py-3 text-slate-500 font-medium">{row.industry}</td>
                     <td className="py-3 font-semibold text-slate-850">{row.health.toFixed(1)}</td>
                     <td className="py-3 font-semibold text-rose-600">{row.default}%</td>
@@ -339,14 +339,14 @@ export default function Analytics() {
             <Card title="📊 Sector & Regional Risk Insights">
               <div className="space-y-4 font-inter text-xs text-slate-650">
                 <div>
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit block mb-2">Industries with Highest Risk</span>
+                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins block mb-2">Industries with Highest Risk</span>
                   <div className="space-y-1.5 font-semibold text-slate-700">
                     <div className="flex justify-between"><span>1. Textile & Apparel</span><span className="text-rose-600 font-bold">25.4% Default Rate</span></div>
                     <div className="flex justify-between"><span>2. Construction</span><span className="text-orange-600 font-bold">22.8% Default Rate</span></div>
                   </div>
                 </div>
                 <div className="pt-2 border-t border-slate-100">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-outfit block mb-2">States with Highest Risk</span>
+                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider font-poppins block mb-2">States with Highest Risk</span>
                   <div className="space-y-1.5 font-semibold text-slate-700">
                     <div className="flex justify-between"><span>1. Rajasthan</span><span className="text-rose-600 font-bold">18.5% Average</span></div>
                     <div className="flex justify-between"><span>2. Uttar Pradesh</span><span className="text-orange-600 font-bold">17.2% Average</span></div>
@@ -360,7 +360,7 @@ export default function Analytics() {
 
       {/* TRENDS */}
       {!loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           <ChartCard title="📈 Monthly Health Score Trend" height="h-52">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={monthlyTrends} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
@@ -368,7 +368,7 @@ export default function Analytics() {
                 <XAxis dataKey="month" stroke="#94A3B8" fontSize={9} />
                 <YAxis stroke="#94A3B8" fontSize={9} domain={[65, 70]} />
                 <Tooltip />
-                <Line type="monotone" dataKey="health" stroke="#2563EB" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={true} />
+                <Line type="monotone" dataKey="health" stroke="#00796B" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={true} />
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -380,7 +380,7 @@ export default function Analytics() {
                 <XAxis dataKey="month" stroke="#94A3B8" fontSize={9} />
                 <YAxis stroke="#94A3B8" fontSize={9} domain={[80, 90]} />
                 <Tooltip />
-                <Line type="monotone" dataKey="approval" stroke="#16A34A" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={true} />
+                <Line type="monotone" dataKey="approval" stroke="#F26C21" strokeWidth={2} dot={{ r: 3 }} isAnimationActive={true} />
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -401,8 +401,8 @@ export default function Analytics() {
 
       {/* GLOBAL IMPORTANCE & EXPLAINABILITY */}
       {!loading && data && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="md:col-span-2 xl:col-span-2">
             <ChartCard title="📈 Global Feature Importance (Model Significance)">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data.health_importance.slice(0, 6)} layout="vertical" margin={{ top: 10, right: 20, left: 10, bottom: 0 }}>
@@ -410,7 +410,7 @@ export default function Analytics() {
                   <XAxis type="number" stroke="#94A3B8" fontSize={9} />
                   <YAxis dataKey="display_name" type="category" stroke="#94A3B8" fontSize={8} width={130} />
                   <Tooltip />
-                  <Bar dataKey="importance" fill="#2563EB" radius={[0, 4, 4, 0]} isAnimationActive={true} />
+                  <Bar dataKey="importance" fill="#00796B" radius={[0, 4, 4, 0]} isAnimationActive={true} />
                 </BarChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -447,19 +447,19 @@ export default function Analytics() {
       {/* PORTFOLIO ACTIONS */}
       {!loading && (
         <Card title="💡 Actionable Banking Portfolio Directives">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-inter text-xs text-slate-600">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 font-inter text-xs text-slate-600">
             <div className="p-4 bg-rose-50/50 border border-rose-100 rounded-xl space-y-2">
-              <span className="text-[9px] font-bold text-rose-700 uppercase tracking-wider block font-outfit">Sector Credit Warning</span>
+              <span className="text-[9px] font-bold text-rose-700 uppercase tracking-wider block font-poppins">Sector Credit Warning</span>
               <p className="leading-relaxed"><b>Manufacturing & Textile sectors</b> demonstrate higher default probabilities than Retail. Restrict term credit limits on Textile entities scoring below 70.</p>
             </div>
             
             <div className="p-4 bg-emerald-50/50 border border-emerald-100 rounded-xl space-y-2">
-              <span className="text-[9px] font-bold text-emerald-700 uppercase tracking-wider block font-outfit">GST Compliance Lever</span>
+              <span className="text-[9px] font-bold text-emerald-700 uppercase tracking-wider block font-poppins">GST Compliance Lever</span>
               <p className="leading-relaxed"><b>GST Compliance</b> remains the strongest positive driver across all models. MSMEs participating in digital tax programs show 18% lower default transition rates.</p>
             </div>
 
             <div className="p-4 bg-blue-50/50 border border-blue-100 rounded-xl space-y-2">
-              <span className="text-[9px] font-bold text-blue-700 uppercase tracking-wider block font-outfit">Regional Monitoring Sweep</span>
+              <span className="text-[9px] font-bold text-blue-700 uppercase tracking-wider block font-poppins">Regional Monitoring Sweep</span>
               <p className="leading-relaxed"><b>Northern & Western regions</b> require closer loan covenant reviews due to elevated turnover volatilities. Propose structured receivable swaps.</p>
             </div>
           </div>

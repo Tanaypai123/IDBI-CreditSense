@@ -44,18 +44,18 @@ export default function SettingsView() {
       initial={{ opacity: 0, y: 15 }} 
       animate={{ opacity: 1, y: 0 }} 
       transition={{ duration: 0.3 }}
-      className="space-y-8 max-w-[1400px] mx-auto px-6 py-8"
+      className="space-y-8 max-w-[1400px] mx-auto px-4 md:px-6 py-6 md:py-8"
     >
       <PageHeader 
         title="IDBI CreditSense System Settings" 
         subtitle="Adjust underwriting thresholds, model registry parameters, and compliance options."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <motion.div 
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          className="md:col-span-2 space-y-6"
+          className="lg:col-span-2 space-y-6"
         >
           <Card title="🔧 Underwriting Configuration">
             <div className="space-y-6 font-inter text-xs text-slate-655 font-semibold text-slate-700">
@@ -146,7 +146,7 @@ export default function SettingsView() {
                   <Lock className="w-4 h-4" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-bold text-slate-800 font-outfit">Encrypted Serialization</h4>
+                  <h4 className="font-bold text-slate-800 font-poppins">Encrypted Serialization</h4>
                   <p className="text-[10px] text-slate-400 leading-normal">
                     Model signatures and pickle states are loaded under AES key configurations.
                   </p>

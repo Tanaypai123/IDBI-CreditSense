@@ -27,7 +27,7 @@ export default function StatusBadge({ status }) {
   return (
     <motion.span 
       whileHover={{ scale: 1.05 }}
-      className={`inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-outfit uppercase tracking-wide border ${styles}`}
+      className={`inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-poppins uppercase tracking-wide border ${styles}`}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${pulseColor} animate-pulse`} />
       <span>{status}</span>
