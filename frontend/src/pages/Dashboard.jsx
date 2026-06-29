@@ -31,10 +31,16 @@ import Card from '../components/Card';
 import TableComponent from '../components/TableComponent';
 import StatusBadge from '../components/StatusBadge';
 import FlowDiagram from '../components/FlowDiagram';
+import { api } from '../services/api';
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [view, setView] = useState("landing"); // "landing" or "console"
+
+  // Warm up the Render backend silently in the background on mount
+  useEffect(() => {
+    api.warmUp();
+  }, []);
 
   // Counting Animation Hook States (Smoother counter speeds)
   const [bizCount, setBizCount] = useState(0);

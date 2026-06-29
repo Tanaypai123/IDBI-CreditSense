@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
+import { ColdStartProvider } from './contexts/ColdStartContext';
 import Layout from './layouts/Layout';
 import Dashboard from './pages/Dashboard';
 import Assessor from './pages/Assessor';
@@ -14,31 +15,34 @@ export default function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
-        <Router>
-          <Routes>
-            {/* Public Login Page */}
-            <Route path="/login" element={<Login />} />
+        <ColdStartProvider>
+          <Router>
+            <Routes>
+              {/* Public Login Page */}
+              <Route path="/login" element={<Login />} />
 
-            {/* Protected App Pages */}
-            <Route 
-              path="/*" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Routes>
-                      <Route path="/" element={<Dashboard />} />
-                      <Route path="/assess" element={<Assessor />} />
-                      <Route path="/batch" element={<Batch />} />
-                      <Route path="/analytics" element={<Analytics />} />
-                      <Route path="/settings" element={<Settings />} />
-                    </Routes>
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-          </Routes>
-        </Router>
+              {/* Protected App Pages */}
+              <Route 
+                path="/*" 
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/assess" element={<Assessor />} />
+                        <Route path="/batch" element={<Batch />} />
+                        <Route path="/analytics" element={<Analytics />} />
+                        <Route path="/settings" element={<Settings />} />
+                      </Routes>
+                    </Layout>
+                  </ProtectedRoute>
+                } 
+              />
+            </Routes>
+          </Router>
+        </ColdStartProvider>
       </AuthProvider>
     </ErrorBoundary>
   );
 }
+
