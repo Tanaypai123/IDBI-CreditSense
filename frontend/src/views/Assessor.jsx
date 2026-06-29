@@ -93,7 +93,7 @@ export default function Assessor() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:8000/api/predict", {
+      const response = await fetch("https://idbi-creditsense.onrender.com/api/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
@@ -113,7 +113,7 @@ export default function Assessor() {
 
   const handleDownloadReport = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/report/pdf", {
+      const response = await fetch("https://idbi-creditsense.onrender.com/api/report/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)

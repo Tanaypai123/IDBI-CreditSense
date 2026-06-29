@@ -12,7 +12,7 @@ export default function Analytics() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:8000/api/analytics/global");
+      const response = await fetch("https://idbi-creditsense.onrender.com/api/analytics/global");
       if (!response.ok) throw new Error("Failed to load global model analytics.");
       const res = await response.json();
       setData(res);

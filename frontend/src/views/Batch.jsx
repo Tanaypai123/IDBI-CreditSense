@@ -27,7 +27,7 @@ export default function Batch() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/api/predict/batch", {
+      const response = await fetch("https://idbi-creditsense.onrender.com/api/predict/batch", {
         method: "POST",
         body: formData
       });
